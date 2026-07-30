@@ -1,6 +1,9 @@
 (() => {
   'use strict';
 
+  // Enable enhanced navigation only after this file loads successfully.
+  document.documentElement.classList.add('js');
+
   const toggle = document.querySelector('[data-nav-toggle]');
   const navigation = document.querySelector('[data-site-nav]');
 
