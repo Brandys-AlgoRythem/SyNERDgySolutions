@@ -56,14 +56,14 @@ This register tracks unresolved items without placing inaccurate placeholders on
 | Honeycomb pattern | Final for MVP | Revisit during aesthetic review | Keep subtle, decorative, and non-essential |
 | Bee artwork | Pending | Provide approved assets | Do not use cartoon or stock bees |
 | Circuit-board details | Future refinement | Determine where technology cues add value | Exclude from structural sprint |
-| Accessibility statement | Pending | Approve wording and contact method | Provide accessibility contact language before launch |
+| Accessibility statement | MVP complete | Refine during edit pass if desired | Footer directs accessibility questions to the public business email |
 | Motion | Deferred | Define restrained motion after shell review | Respect reduced-motion and avoid decorative animation initially |
 
 ## Deployment and review
 
 | Item | Current state | Required decision or evidence | Public treatment until resolved |
 |---|---|---|---|
-| Production branch policy | Working | Confirm `main` as Cloudflare production branch | Do not deploy automatically |
+| Production branch policy | Final for MVP | Revisit only if deployment architecture changes | Use `main` as the stable production branch; do not deploy automatically |
 | Preview deployment | Pending | Connect Cloudflare after initial pull request | Local preview only |
 | Analytics | Excluded from MVP | Explicit later decision required | No analytics or cookies |
 | Privacy language | Working | Verify implementation matches statement | State that the shell uses no tracking or cookies |

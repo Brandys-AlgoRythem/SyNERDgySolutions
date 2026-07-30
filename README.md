@@ -35,9 +35,9 @@ The MVP is intentionally simple and durable:
 
 ## Repository workflow
 
-- `main` is the stable branch.
-- Active MVP development occurs on `build/v1-site-shell`.
-- Changes are reviewed through a draft pull request before merge or deployment.
+- `main` preserves the frozen `1.0.0-mvp` baseline.
+- Post-MVP refinements occur on `edit/v1-post-mvp`.
+- The completed construction history remains on `build/v1-site-shell`.
 - Production deployment, DNS, and domain changes require explicit approval.
 
 ## Public repository boundary
@@ -82,4 +82,4 @@ Cloudflare Pages is the planned deployment platform. Deployment is deferred unti
 
 ## Current status
 
-Phase Six completes the domain-neutral metadata, site-file, and automated-validation infrastructure. The repository now includes page-specific social metadata, organization structured data, manifest and icon assets, robots and sitemap controls, a production-URL generator, a standard-library validator, a public claim register, and a GitHub Actions validation workflow. The final domain, remote GitHub publication, deployment, and launch review remain separate gates.
+Version `1.0.0-mvp` is the frozen five-page baseline. The site includes complete public page content, the responsive visual system, domain-neutral metadata, structured data, site assets, automated validation, and claims controls. Post-MVP editing continues on `edit/v1-post-mvp`. The final domain, remote GitHub publication, and Cloudflare deployment remain separate gates.
