@@ -77,10 +77,10 @@ def configure_page(path: Path, route_path: str, site_url: str | None, social_ima
                 f'  <meta property="og:image" content="{image_url}">',
                 '  <meta property="og:image:width" content="1200">',
                 '  <meta property="og:image:height" content="630">',
-                '  <meta property="og:image:alt" content="SyNERDgy Solutions: Systems fail at the seams. We work at the seams.">',
+                '  <meta property="og:image:alt" content="SyNERDgy Solutions: Order isn’t accidental. It’s engineered.">',
                 '  <meta name="twitter:card" content="summary_large_image">',
                 f'  <meta name="twitter:image" content="{image_url}">',
-                '  <meta name="twitter:image:alt" content="SyNERDgy Solutions: Systems fail at the seams. We work at the seams.">',
+                '  <meta name="twitter:image:alt" content="SyNERDgy Solutions: Order isn’t accidental. It’s engineered.">',
                 END_MARKER,
             ]
         )

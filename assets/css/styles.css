@@ -548,9 +548,20 @@ h3 {
 
 .home-hero__lead {
   max-width: 59ch;
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-4);
   color: var(--color-muted);
   font-size: clamp(1.15rem, 2.3vw, 1.5rem);
+}
+
+.home-hero__scope {
+  max-width: 66ch;
+  margin-bottom: var(--space-6);
+  color: var(--color-ink);
+  font-size: clamp(0.74rem, 1.2vw, 0.86rem);
+  font-weight: 800;
+  letter-spacing: 0.085em;
+  line-height: 1.65;
+  text-transform: uppercase;
 }
 
 .button {
@@ -580,114 +591,198 @@ h3 {
   background: var(--color-surface);
 }
 
-.systems-map {
+.hero-hive {
   position: relative;
-  width: min(100%, 31rem);
-  aspect-ratio: 1;
-  margin-inline: auto;
+  z-index: 1;
+  width: min(58rem, 68vw);
+  min-width: 44rem;
+  aspect-ratio: 1.62;
+  margin-right: -20vw;
+  margin-left: -9rem;
+  pointer-events: none;
+  isolation: isolate;
 }
 
-.systems-map::before {
+.hero-hive::before {
   position: absolute;
-  inset: 12%;
-  border: 1px solid rgb(138 98 0 / 0.18);
+  inset: 2% 4% 0 0;
   border-radius: 50%;
+  background:
+    radial-gradient(circle at 54% 46%, rgb(213 153 23 / 0.34), transparent 42%),
+    radial-gradient(circle at 57% 52%, rgb(20 17 14 / 0.18), transparent 68%);
+  filter: blur(1.35rem);
   content: "";
 }
 
-.systems-map::after {
+.hero-hive__comb {
   position: absolute;
-  inset: 27%;
-  border: 1px dashed rgb(138 98 0 / 0.25);
-  border-radius: 50%;
-  content: "";
+  inset: 0;
+  transform: rotate(-1.2deg);
 }
 
-.systems-map__node {
+.hero-hive__cell {
+  --cell-fill: #171513;
+  --cell-inner: #090909;
+  --cell-wall: 0.34rem;
   position: absolute;
   z-index: 2;
-  display: grid;
-  min-width: 7.25rem;
-  min-height: 4.3rem;
-  place-items: center;
-  padding: var(--space-3);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-surface);
-  box-shadow: var(--shadow-soft);
-  font-size: 0.82rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  text-align: center;
-  text-transform: uppercase;
+  width: 19.25%;
+  aspect-ratio: 1.1547;
+  clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+  background:
+    linear-gradient(145deg, #fff0b6 0%, #d69a19 16%, #7a4700 48%, #edbd4d 76%, #8c5600 100%);
+  filter:
+    drop-shadow(0 0.22rem 0.12rem rgb(255 214 105 / 0.28))
+    drop-shadow(0 0.75rem 0.7rem rgb(22 15 7 / 0.32));
 }
 
-.systems-map__node--center {
+.hero-hive__cell::before {
+  position: absolute;
+  inset: var(--cell-wall);
+  clip-path: inherit;
+  background:
+    radial-gradient(circle at 30% 18%, rgb(255 255 255 / 0.1), transparent 26%),
+    linear-gradient(155deg, #25211d 0%, var(--cell-fill) 34%, var(--cell-inner) 100%);
+  box-shadow: inset 0 0 1.25rem rgb(0 0 0 / 0.72);
+  content: "";
+}
+
+.hero-hive__cell::after {
+  position: absolute;
+  inset: calc(var(--cell-wall) + 0.3rem);
+  clip-path: inherit;
+  background:
+    linear-gradient(90deg, transparent 46%, rgb(222 164 37 / 0.48) 47% 49%, transparent 50%) 10% 18% / 48% 19% no-repeat,
+    linear-gradient(30deg, transparent 47%, rgb(222 164 37 / 0.38) 48% 50%, transparent 51%) 31% 45% / 54% 22% no-repeat,
+    linear-gradient(-30deg, transparent 47%, rgb(222 164 37 / 0.34) 48% 50%, transparent 51%) 57% 68% / 44% 20% no-repeat,
+    radial-gradient(circle, #dca82e 0 0.1rem, transparent 0.12rem) 20% 18% / 34% 34%;
+  opacity: 0.24;
+  content: "";
+}
+
+.hero-hive__cell--circuit::after { opacity: 0.88; }
+
+.hero-hive__cell--dark {
+  --cell-fill: #11100f;
+  --cell-inner: #030303;
+}
+
+.hero-hive__cell--dark::before {
+  background:
+    radial-gradient(circle at 28% 18%, rgb(255 255 255 / 0.07), transparent 25%),
+    linear-gradient(155deg, #1d1a17, #080706 72%);
+}
+
+.hero-hive__cell--honey {
+  --cell-wall: 0.42rem;
+  --cell-fill: #d79705;
+  --cell-inner: #9a5900;
+}
+
+.hero-hive__cell--honey::before {
+  background:
+    radial-gradient(circle at 34% 26%, rgb(255 244 179 / 0.86), transparent 11%),
+    repeating-radial-gradient(circle at 50% 50%, rgb(255 240 158 / 0.18) 0 0.13rem, transparent 0.14rem 0.57rem),
+    linear-gradient(145deg, #f2c347 0%, #d99405 58%, #8b4e00 100%);
+  box-shadow:
+    inset 0 0 1rem rgb(93 46 0 / 0.56),
+    inset 0 0 0 1px rgb(255 236 163 / 0.35);
+}
+
+/* Dense staggered packing: shared walls overlap slightly so the cluster reads
+   as one organic comb rather than a row of isolated hexagon cards. */
+.hero-hive__cell--01 { top: 38.0%; left: -8.0%; }
+.hero-hive__cell--02 { top: 24.8%; left: 6.1%; }
+.hero-hive__cell--03 { top: 51.0%; left: 6.1%; }
+.hero-hive__cell--04 { top: 11.7%; left: 20.2%; }
+.hero-hive__cell--05 { top: 37.9%; left: 20.2%; }
+.hero-hive__cell--06 { top: 64.1%; left: 20.2%; }
+.hero-hive__cell--07 { top: 24.8%; left: 34.3%; }
+.hero-hive__cell--08 { top: 51.0%; left: 34.3%; }
+.hero-hive__cell--09 { top: 77.2%; left: 34.3%; }
+.hero-hive__cell--10 { top: 11.7%; left: 48.4%; }
+.hero-hive__cell--11 { top: 37.9%; left: 48.4%; }
+.hero-hive__cell--12 { top: 64.1%; left: 48.4%; }
+.hero-hive__cell--13 { top: 24.8%; left: 62.5%; }
+.hero-hive__cell--14 { top: 51.0%; left: 62.5%; }
+.hero-hive__cell--15 { top: 11.7%; left: 76.6%; }
+.hero-hive__cell--16 { top: 37.9%; left: 76.6%; }
+.hero-hive__cell--17 { top: 64.1%; left: 76.6%; }
+.hero-hive__cell--18 { top: 24.8%; left: 90.7%; }
+.hero-hive__cell--19 { top: 51.0%; left: 90.7%; }
+.hero-hive__cell--20 { top: -1.4%; left: 62.5%; }
+.hero-hive__cell--21 { top: -1.4%; left: 34.3%; }
+.hero-hive__cell--22 { top: 77.2%; left: 62.5%; }
+
+.hero-hive__cell--01,
+.hero-hive__cell--03,
+.hero-hive__cell--06,
+.hero-hive__cell--09,
+.hero-hive__cell--18,
+.hero-hive__cell--19 {
+  --cell-wall: 0.22rem;
+  opacity: 0.82;
+}
+
+.hero-hive__cell--04,
+.hero-hive__cell--10,
+.hero-hive__cell--11,
+.hero-hive__cell--16,
+.hero-hive__cell--20,
+.hero-hive__cell--21 {
+  --cell-wall: 0.45rem;
+}
+
+.hero-hive__trace {
+  position: absolute;
+  z-index: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #d5a126 12% 88%, transparent);
+  opacity: 0.88;
+  box-shadow: 0 0 0.45rem rgb(213 161 38 / 0.22);
+}
+
+.hero-hive__trace::before,
+.hero-hive__trace::after {
+  position: absolute;
   top: 50%;
-  left: 50%;
-  min-width: 8.5rem;
-  min-height: 8.5rem;
-  transform: translate(-50%, -50%);
+  width: 0.58rem;
+  aspect-ratio: 1;
+  transform: translateY(-50%);
+  border: 2px solid #c88c12;
   border-radius: 50%;
-  background: var(--color-ink);
-  color: var(--color-surface);
+  background: var(--color-canvas);
+  box-shadow: 0 0 0.45rem rgb(213 161 38 / 0.28);
+  content: "";
 }
 
-.systems-map__node--people {
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-}
+.hero-hive__trace::before { left: 0; }
+.hero-hive__trace::after { right: 0; }
+.hero-hive__trace--one { top: 27%; right: -5%; width: 30%; }
+.hero-hive__trace--two { top: 44%; right: -9%; width: 36%; }
+.hero-hive__trace--three { top: 70%; right: -2%; width: 31%; }
+.hero-hive__trace--four { top: 73%; left: -8%; width: 26%; }
 
-.systems-map__node--process {
-  top: 24%;
-  right: 0;
-}
-
-.systems-map__node--requirements {
-  right: 5%;
-  bottom: 6%;
-}
-
-.systems-map__node--records {
-  bottom: 6%;
-  left: 5%;
-}
-
-.systems-map__node--technology {
-  top: 24%;
-  left: 0;
-}
-
-.systems-map__line {
+.hero-hive__seam {
   position: absolute;
   z-index: 1;
-  top: 50%;
+  bottom: -25%;
+  left: 52%;
+  width: 2px;
+  height: 35%;
+  background: linear-gradient(#d5a126, transparent);
+}
+
+.hero-hive__seam::before {
+  position: absolute;
+  top: -0.42rem;
   left: 50%;
-  width: 35%;
-  height: 1px;
-  transform-origin: left center;
-  background: var(--color-gold-dark);
-}
-
-.systems-map__line--one {
-  transform: rotate(-90deg);
-}
-
-.systems-map__line--two {
-  transform: rotate(-20deg);
-}
-
-.systems-map__line--three {
-  transform: rotate(45deg);
-}
-
-.systems-map__line--four {
-  transform: rotate(135deg);
-}
-
-.systems-map__line--five {
-  transform: rotate(200deg);
+  width: 0.9rem;
+  aspect-ratio: 1;
+  transform: translateX(-50%) rotate(30deg);
+  border: 3px solid #bf8210;
+  background: var(--color-canvas);
+  content: "";
 }
 
 .problem-grid,
@@ -946,8 +1041,18 @@ h3 {
     grid-template-columns: 1fr;
   }
 
-  .systems-map {
-    width: min(100%, 26rem);
+  .hero-hive {
+    position: absolute;
+    top: 8%;
+    right: -25rem;
+    width: 46rem;
+    min-width: 46rem;
+    margin: 0;
+    opacity: 0.58;
+  }
+
+  .home-hero__grid {
+    position: relative;
   }
 
   .problem-grid,
@@ -969,8 +1074,14 @@ h3 {
     grid-template-columns: 1fr;
   }
 
-  .systems-map {
-    display: none;
+  .hero-hive {
+    top: 28%;
+    right: -38rem;
+    opacity: 0.16;
+  }
+
+  .home-hero__content {
+    max-width: 43rem;
   }
 
   .final-cta__inner {
@@ -996,7 +1107,7 @@ h3 {
 }
 
 @media print {
-  .systems-map,
+  .hero-hive,
   .hive-mark,
   .final-cta .button {
     display: none;
@@ -2076,7 +2187,7 @@ a {
   .site-footer,
   .skip-link,
   .nav-toggle,
-  .systems-map,
+  .hero-hive,
   .hive-mark,
   .governance-hive-visual,
   .page-index,
@@ -2168,5 +2279,715 @@ a {
   a[href^="mailto:"]::after {
     content: " (synerdgysolutions@gmail.com)";
     font-size: 0.85em;
+  }
+}
+
+/* ========================================================================== 
+   Expanded-logo homepage direction
+   Dark chocolate canvas, dimensional metallic honeycomb, circuit seams, and
+   the signature honey drop. This block intentionally overrides the earlier
+   light MVP treatment without changing the interior-page system.
+   ========================================================================== */
+
+body.home-page {
+  --home-chocolate: #0b0807;
+  --home-chocolate-soft: #14100d;
+  --home-panel: #100c0a;
+  --home-ivory: #f8edda;
+  --home-muted: #c9baa7;
+  --home-gold: #d79a20;
+  --home-gold-bright: #f0c45b;
+  --home-gold-dark: #754208;
+  color-scheme: dark;
+  background:
+    radial-gradient(circle at 75% 9%, rgb(154 85 10 / 0.16), transparent 25rem),
+    radial-gradient(circle at 12% 34%, rgb(255 205 92 / 0.035), transparent 30rem),
+    linear-gradient(180deg, #0b0807 0%, #0d0908 50%, #090706 100%);
+  color: var(--home-ivory);
+}
+
+.home-page .site-header {
+  border-bottom-color: rgb(215 154 32 / 0.3);
+  background:
+    linear-gradient(180deg, rgb(14 10 8 / 0.97), rgb(10 7 6 / 0.92));
+  box-shadow:
+    0 0.6rem 2.2rem rgb(0 0 0 / 0.42),
+    inset 0 -1px rgb(255 211 105 / 0.035);
+}
+
+.home-page .brand__name {
+  background: linear-gradient(180deg, #fff0ba 0%, #dc9e28 38%, #7c4307 76%, #edc662 100%);
+  color: transparent;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  text-shadow: 0 0.16rem 0.8rem rgb(214 146 26 / 0.2);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.home-page .brand__descriptor {
+  color: #d4b16f;
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+}
+
+.home-page .site-nav__link {
+  color: #f0e5d4;
+}
+
+.home-page .site-nav__link:hover,
+.home-page .site-nav__link[aria-current="page"] {
+  background: rgb(255 255 255 / 0.045);
+  box-shadow: inset 0 -0.16rem 0 var(--home-gold);
+}
+
+.home-page .site-nav__link--contact,
+.home-page .site-nav__link--contact:hover,
+.home-page .site-nav__link--contact[aria-current="page"] {
+  border: 1px solid rgb(232 178 59 / 0.62);
+  background: linear-gradient(180deg, #21170d, #120d09);
+  color: #f8e9ca;
+  box-shadow:
+    inset 0 0 0 1px rgb(255 222 137 / 0.05),
+    0 0.45rem 1.1rem rgb(0 0 0 / 0.26);
+}
+
+.home-page .nav-toggle {
+  border-color: rgb(231 175 50 / 0.58);
+  color: #f4e7d0;
+}
+
+.home-page main {
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, transparent 0 5%, rgb(216 153 30 / 0.026) 5% 5.1%, transparent 5.1% 94.9%, rgb(216 153 30 / 0.026) 94.9% 95%, transparent 95%),
+    transparent;
+}
+
+.home-page main > .section {
+  position: relative;
+  isolation: isolate;
+  border-bottom: 1px solid rgb(215 154 32 / 0.24);
+  background:
+    radial-gradient(circle at 82% 15%, rgb(215 154 32 / 0.055), transparent 24rem),
+    linear-gradient(180deg, rgb(18 13 10 / 0.62), rgb(8 6 5 / 0.72));
+  color: var(--home-ivory);
+}
+
+.home-page main > .section::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent 0 12%, rgb(212 147 25 / 0.04) 12% 12.08%, transparent 12.08% 88%, rgb(212 147 25 / 0.04) 88% 88.08%, transparent 88.08%),
+    radial-gradient(circle at 1.5rem 1.5rem, rgb(226 170 51 / 0.08) 0 1px, transparent 1.5px) 0 0 / 3rem 3rem;
+  opacity: 0.54;
+  content: "";
+  pointer-events: none;
+}
+
+.home-page .home-hero {
+  min-height: calc(100svh - var(--header-height));
+  padding-block: clamp(4rem, 8vw, 7.5rem);
+  background:
+    radial-gradient(ellipse at 78% 49%, rgb(213 142 14 / 0.2), transparent 31rem),
+    radial-gradient(ellipse at 63% 48%, rgb(255 226 156 / 0.04), transparent 30rem),
+    linear-gradient(105deg, #0b0807 0 47%, #100b08 67%, #090706 100%);
+}
+
+.home-page .home-hero::before {
+  background:
+    linear-gradient(90deg, transparent, rgb(215 154 32 / 0.06), transparent) 50% 96% / 86% 1px no-repeat,
+    radial-gradient(circle at 14% 14%, rgb(239 190 77 / 0.05), transparent 17rem);
+  opacity: 1;
+}
+
+.home-page .home-hero::after {
+  top: -17rem;
+  right: -13rem;
+  width: 38rem;
+  border-color: rgb(221 162 38 / 0.09);
+  box-shadow: 0 0 0 5rem rgb(225 160 30 / 0.012);
+}
+
+.home-page .home-hero__grid {
+  grid-template-columns: minmax(22rem, 0.86fr) minmax(35rem, 1.42fr);
+  gap: clamp(1.5rem, 3.5vw, 4.5rem);
+}
+
+.home-page .home-hero__content {
+  z-index: 5;
+  padding-block: 1rem;
+}
+
+.home-page .home-hero .eyebrow {
+  color: #e6b447;
+  text-shadow: 0 0 1rem rgb(219 151 26 / 0.23);
+}
+
+.home-page .home-hero h1 {
+  max-width: 11.8ch;
+  color: #fbf2e4;
+  font-size: clamp(3.4rem, 6.1vw, 6.5rem);
+  font-weight: 760;
+  line-height: 0.93;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+  text-shadow: 0 0.2rem 1.4rem rgb(0 0 0 / 0.55);
+}
+
+.home-page .home-hero__lead {
+  max-width: 52ch;
+  color: var(--home-muted);
+  font-size: clamp(1.05rem, 1.55vw, 1.3rem);
+}
+
+.home-page .home-hero__scope {
+  color: #d6b878;
+  letter-spacing: 0.105em;
+}
+
+.home-page .button--primary {
+  border-color: #e2a936;
+  background: linear-gradient(180deg, #e9b94c, #c27a08);
+  color: #130c05;
+  box-shadow:
+    inset 0 1px rgb(255 244 198 / 0.45),
+    0 0.75rem 1.8rem rgb(0 0 0 / 0.36),
+    0 0 1.2rem rgb(215 142 21 / 0.13);
+}
+
+.home-page .button--primary:hover {
+  border-color: #f2d179;
+  background: linear-gradient(180deg, #f1ca65, #d58b0d);
+}
+
+.home-page .button--secondary {
+  border-color: rgb(229 174 52 / 0.64);
+  background: rgb(17 12 9 / 0.8);
+  color: #f3e6d1;
+  box-shadow: inset 0 0 0 1px rgb(255 220 137 / 0.04);
+}
+
+.home-page .button--secondary:hover {
+  background: #1c130c;
+  color: #fff2db;
+}
+
+/* Hero comb: dense shared-wall geometry, rendered entirely in CSS. */
+.home-page .hero-hive {
+  width: min(69rem, 71vw);
+  min-width: 58rem;
+  aspect-ratio: 1.66;
+  margin-right: -25vw;
+  margin-left: -6.5rem;
+  filter: saturate(1.08) contrast(1.04);
+}
+
+.home-page .hero-hive::before {
+  inset: 2% -3% -5% 1%;
+  border-radius: 48%;
+  background:
+    radial-gradient(circle at 49% 49%, rgb(241 181 47 / 0.17), transparent 39%),
+    radial-gradient(circle at 58% 42%, rgb(255 228 164 / 0.075), transparent 19%),
+    radial-gradient(circle at 50% 50%, rgb(0 0 0 / 0.82), transparent 72%);
+  filter: blur(1.65rem);
+}
+
+.home-page .hero-hive__comb {
+  inset: 1% -2% -7% 0;
+  transform: rotate(-1.1deg);
+}
+
+.home-page .hero-hive__cell {
+  --cell-fill-a: #211a15;
+  --cell-fill-b: #090706;
+  --cell-fill-c: #15100d;
+  --cell-wall: 0.34rem;
+  --cell-highlight: rgb(255 232 173 / 0.1);
+  width: 15.45%;
+  background:
+    linear-gradient(145deg, #6b3703 0%, #f0c25b 13%, #9b5708 31%, #f0c55f 54%, #6c3805 75%, #d9971b 100%);
+  filter:
+    drop-shadow(0 0.18rem 0.08rem rgb(255 221 139 / 0.22))
+    drop-shadow(0 0.72rem 0.58rem rgb(0 0 0 / 0.72));
+}
+
+.home-page .hero-hive__cell::before {
+  inset: var(--cell-wall);
+  background:
+    radial-gradient(circle at 32% 18%, var(--cell-highlight), transparent 20%),
+    radial-gradient(circle at 68% 78%, rgb(214 142 27 / 0.06), transparent 28%),
+    linear-gradient(145deg, var(--cell-fill-a), var(--cell-fill-b) 62%, var(--cell-fill-c));
+  box-shadow:
+    inset 0 0 0 1px rgb(42 23 7 / 0.95),
+    inset 0 0 0 3px rgb(245 188 66 / 0.15),
+    inset 0 0 1.35rem rgb(0 0 0 / 0.82),
+    inset 0 0.18rem 0.7rem rgb(255 228 163 / 0.04);
+}
+
+.home-page .hero-hive__cell::after {
+  inset: calc(var(--cell-wall) + 0.35rem);
+  background:
+    linear-gradient(90deg, transparent 0 47%, rgb(207 145 29 / 0.65) 47.5% 49%, transparent 49.5%) 14% 19% / 45% 24% no-repeat,
+    linear-gradient(31deg, transparent 0 47%, rgb(207 145 29 / 0.55) 47.5% 49%, transparent 49.5%) 38% 46% / 54% 24% no-repeat,
+    linear-gradient(-31deg, transparent 0 47%, rgb(207 145 29 / 0.5) 47.5% 49%, transparent 49.5%) 63% 70% / 48% 23% no-repeat,
+    radial-gradient(circle, #e6b43d 0 0.11rem, transparent 0.13rem) 20% 18% / 34% 34%;
+  opacity: 0.22;
+  filter: drop-shadow(0 0 0.25rem rgb(219 154 30 / 0.17));
+}
+
+.home-page .hero-hive__cell--circuit::after {
+  opacity: 0.76;
+}
+
+.home-page .hero-hive__cell--dark,
+.home-page .hero-hive__cell--17 {
+  --cell-fill-a: #14100d;
+  --cell-fill-b: #010101;
+  --cell-fill-c: #080605;
+  --cell-wall: 0.43rem;
+}
+
+.home-page .hero-hive__cell--cream {
+  --cell-fill-a: #fff2c9;
+  --cell-fill-b: #d6b06e;
+  --cell-fill-c: #f2dba7;
+  --cell-highlight: rgb(255 255 255 / 0.62);
+  --cell-wall: 0.42rem;
+}
+
+.home-page .hero-hive__cell--cream::before {
+  background:
+    radial-gradient(circle at 31% 20%, rgb(255 255 255 / 0.62), transparent 18%),
+    linear-gradient(145deg, #fff4d0 0%, #d8b472 60%, #f7e3b4 100%);
+  box-shadow:
+    inset 0 0 0 1px rgb(102 61 13 / 0.72),
+    inset 0 0 0 3px rgb(255 249 220 / 0.32),
+    inset 0 0 1.05rem rgb(95 53 9 / 0.28);
+}
+
+.home-page .hero-hive__cell--cream::after,
+.home-page .hero-hive__cell--honey::after {
+  background:
+    linear-gradient(30deg, rgb(255 246 205 / 0.23) 12%, transparent 12.5%, transparent 87%, rgb(255 246 205 / 0.23) 87.5%, rgb(255 246 205 / 0.23)) 0 0 / 1.1rem 1.9rem,
+    linear-gradient(150deg, rgb(255 246 205 / 0.23) 12%, transparent 12.5%, transparent 87%, rgb(255 246 205 / 0.23) 87.5%, rgb(255 246 205 / 0.23)) 0 0 / 1.1rem 1.9rem,
+    linear-gradient(30deg, rgb(255 246 205 / 0.23) 12%, transparent 12.5%, transparent 87%, rgb(255 246 205 / 0.23) 87.5%, rgb(255 246 205 / 0.23)) 0.55rem 0.95rem / 1.1rem 1.9rem,
+    linear-gradient(150deg, rgb(255 246 205 / 0.23) 12%, transparent 12.5%, transparent 87%, rgb(255 246 205 / 0.23) 87.5%, rgb(255 246 205 / 0.23)) 0.55rem 0.95rem / 1.1rem 1.9rem;
+  opacity: 0.58;
+}
+
+.home-page .hero-hive__cell--honey {
+  --cell-wall: 0.45rem;
+}
+
+.home-page .hero-hive__cell--honey::before {
+  background:
+    radial-gradient(circle at 30% 20%, rgb(255 238 162 / 0.85), transparent 13%),
+    radial-gradient(circle at 70% 70%, rgb(93 43 0 / 0.22), transparent 35%),
+    linear-gradient(145deg, #f0bd3c 0%, #ca7800 58%, #713700 100%);
+  box-shadow:
+    inset 0 0 0 1px rgb(91 43 0 / 0.82),
+    inset 0 0 0 3px rgb(255 231 143 / 0.25),
+    inset 0 0 1.15rem rgb(79 32 0 / 0.5),
+    0 0 1.1rem rgb(221 139 13 / 0.18);
+}
+
+.home-page .hero-hive__cell--ghost {
+  --cell-wall: 0.18rem;
+  opacity: 0.48;
+  filter: drop-shadow(0 0.45rem 0.5rem rgb(0 0 0 / 0.52));
+}
+
+.home-page .hero-hive__cell--ghost::before {
+  background: rgb(8 6 5 / 0.42);
+  box-shadow: inset 0 0 0 1px rgb(221 161 42 / 0.18);
+}
+
+/* Organic, shared-wall placement. The edge cells deliberately continue beyond
+   the viewport so the hive feels grown rather than placed as a rectangular UI. */
+.home-page .hero-hive__cell--01 { top: 44%; left: -6%; }
+.home-page .hero-hive__cell--02 { top: 65%; left: -6%; }
+.home-page .hero-hive__cell--03 { top: 12.5%; left: 5.4%; }
+.home-page .hero-hive__cell--04 { top: 33.5%; left: 5.4%; }
+.home-page .hero-hive__cell--05 { top: 54.5%; left: 5.4%; }
+.home-page .hero-hive__cell--06 { top: 2%; left: 16.8%; }
+.home-page .hero-hive__cell--07 { top: 23%; left: 16.8%; }
+.home-page .hero-hive__cell--08 { top: 44%; left: 16.8%; }
+.home-page .hero-hive__cell--09 { top: 65%; left: 16.8%; }
+.home-page .hero-hive__cell--10 { top: 86%; left: 16.8%; }
+.home-page .hero-hive__cell--11 { top: 12.5%; left: 28.2%; }
+.home-page .hero-hive__cell--12 { top: 33.5%; left: 28.2%; }
+.home-page .hero-hive__cell--13 { top: 54.5%; left: 28.2%; }
+.home-page .hero-hive__cell--14 { top: 75.5%; left: 28.2%; }
+.home-page .hero-hive__cell--15 { top: 2%; left: 39.6%; }
+.home-page .hero-hive__cell--16 { top: 23%; left: 39.6%; }
+.home-page .hero-hive__cell--17 { top: 44%; left: 39.6%; }
+.home-page .hero-hive__cell--18 { top: 65%; left: 39.6%; }
+.home-page .hero-hive__cell--19 { top: 12.5%; left: 51%; }
+.home-page .hero-hive__cell--20 { top: 33.5%; left: 51%; }
+.home-page .hero-hive__cell--21 { top: 54.5%; left: 51%; }
+.home-page .hero-hive__cell--22 { top: 75.5%; left: 51%; }
+.home-page .hero-hive__cell--23 { top: 2%; left: 62.4%; }
+.home-page .hero-hive__cell--24 { top: 23%; left: 62.4%; }
+.home-page .hero-hive__cell--25 { top: 44%; left: 62.4%; }
+.home-page .hero-hive__cell--26 { top: 65%; left: 62.4%; }
+.home-page .hero-hive__cell--27 { top: 12.5%; left: 73.8%; }
+.home-page .hero-hive__cell--28 { top: 33.5%; left: 73.8%; }
+.home-page .hero-hive__cell--29 { top: 54.5%; left: 73.8%; }
+.home-page .hero-hive__cell--30 { top: 75.5%; left: 73.8%; }
+.home-page .hero-hive__cell--31 { top: 23%; left: 85.2%; }
+.home-page .hero-hive__cell--32 { top: 44%; left: 85.2%; }
+.home-page .hero-hive__cell--33 { top: 65%; left: 85.2%; }
+.home-page .hero-hive__cell--34 { top: 12.5%; left: 96.6%; }
+.home-page .hero-hive__cell--35 { top: 33.5%; left: 96.6%; }
+.home-page .hero-hive__cell--36 { top: 54.5%; left: 96.6%; }
+
+.home-page .hero-hive__cell--01,
+.home-page .hero-hive__cell--10,
+.home-page .hero-hive__cell--30,
+.home-page .hero-hive__cell--34 {
+  opacity: 0.42;
+}
+
+.home-page .hero-hive__cell--06,
+.home-page .hero-hive__cell--09,
+.home-page .hero-hive__cell--16,
+.home-page .hero-hive__cell--19,
+.home-page .hero-hive__cell--26,
+.home-page .hero-hive__cell--31 {
+  --cell-fill-a: #fff2c9;
+  --cell-fill-b: #d6b06e;
+  --cell-fill-c: #f2dba7;
+  --cell-highlight: rgb(255 255 255 / 0.62);
+  --cell-wall: 0.42rem;
+}
+
+.home-page .hero-hive__trace {
+  z-index: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #bd7810 8%, #e2a734 52%, #9b5709 91%, transparent);
+  opacity: 0.78;
+  box-shadow: 0 0 0.5rem rgb(214 145 26 / 0.18);
+}
+
+.home-page .hero-hive__trace::before,
+.home-page .hero-hive__trace::after {
+  width: 0.68rem;
+  border-color: #d3931d;
+  background: #0b0807;
+}
+
+.home-page .hero-hive__trace--one { top: 19%; right: -3%; width: 38%; }
+.home-page .hero-hive__trace--two { top: 39%; right: -8%; width: 43%; }
+.home-page .hero-hive__trace--three { top: 73%; right: -2%; width: 37%; }
+.home-page .hero-hive__trace--four { top: 69%; left: -4%; width: 25%; }
+
+.home-page .hero-hive__seam {
+  z-index: 3;
+  bottom: -9%;
+  left: 57.9%;
+  width: 2px;
+  height: 21%;
+  background: linear-gradient(#e3ad3d 0 45%, #734109 75%, transparent);
+  box-shadow: 0 0 0.48rem rgb(226 158 34 / 0.3);
+}
+
+.home-page .hero-hive__seam::before {
+  top: -0.78rem;
+  width: 1.4rem;
+  border: 0.22rem solid #d99d29;
+  background: #0b0807;
+  box-shadow:
+    inset 0 0 0 1px #5c3105,
+    0 0 0.7rem rgb(218 147 25 / 0.23);
+}
+
+.home-page .hero-hive__honey-drop {
+  position: absolute;
+  z-index: 4;
+  bottom: -16.5%;
+  left: calc(57.9% - 0.52rem);
+  width: 1.06rem;
+  height: 1.58rem;
+  transform: rotate(45deg);
+  border: 1px solid #ffd977;
+  border-radius: 62% 38% 66% 34% / 66% 40% 60% 34%;
+  background:
+    radial-gradient(circle at 28% 25%, rgb(255 249 213 / 0.85), transparent 15%),
+    linear-gradient(135deg, #ffd46a 0%, #dc8908 49%, #7e3a00 100%);
+  box-shadow:
+    inset -0.16rem -0.2rem 0.35rem rgb(88 35 0 / 0.38),
+    0 0.28rem 0.75rem rgb(221 132 7 / 0.5),
+    0 0 1.2rem rgb(247 184 52 / 0.22);
+}
+
+/* Carry the expanded-logo visual language through the entire homepage. */
+.home-page .section--ink,
+.home-page .section--gold,
+.home-page .section--surface,
+.home-page .final-cta {
+  background:
+    radial-gradient(circle at 86% 18%, rgb(223 157 31 / 0.065), transparent 24rem),
+    linear-gradient(180deg, #110d0a, #090706);
+  color: var(--home-ivory);
+}
+
+.home-page .section-heading > p:not(.eyebrow),
+.home-page .problem-card p:last-child,
+.home-page .service-card p,
+.home-page .method-step p,
+.home-page .deliverables-layout p,
+.home-page .brand-story p,
+.home-page .final-cta p {
+  color: var(--home-muted);
+}
+
+.home-page .section-heading--light > p:not(.eyebrow) {
+  color: var(--home-muted);
+}
+
+.home-page h2,
+.home-page h3 {
+  color: #f8edda;
+}
+
+.home-page .eyebrow,
+.home-page .eyebrow--light,
+.home-page .card-kicker,
+.home-page .service-card__index {
+  color: #dda535;
+}
+
+.home-page .problem-card,
+.home-page .service-card,
+.home-page .principles-grid article,
+.home-page .engagement-card-grid article,
+.home-page .work-product-groups article {
+  border: 1px solid rgb(214 151 30 / 0.3);
+  background:
+    linear-gradient(145deg, rgb(255 245 218 / 0.035), transparent 40%),
+    linear-gradient(180deg, #17110d, #0c0907);
+  box-shadow:
+    inset 0 0 0 1px rgb(255 225 153 / 0.025),
+    0 1rem 2.2rem rgb(0 0 0 / 0.28);
+}
+
+.home-page .problem-card:hover,
+.home-page .service-card:hover {
+  border-color: rgb(232 176 57 / 0.62);
+  box-shadow:
+    inset 0 0 0 1px rgb(255 225 153 / 0.05),
+    0 1.2rem 2.8rem rgb(0 0 0 / 0.42),
+    0 0 1.4rem rgb(214 142 20 / 0.08);
+}
+
+.home-page .service-card__index {
+  border-color: rgb(218 155 31 / 0.42);
+  background: #110c08;
+}
+
+.home-page .method-step {
+  border-color: rgb(218 155 31 / 0.34);
+}
+
+.home-page .method-step__number {
+  border-color: #d49a29;
+  background: #120c08;
+  color: #f0c665;
+}
+
+.home-page .deliverables-list li {
+  border-color: rgb(215 154 32 / 0.3);
+  background: linear-gradient(90deg, rgb(215 154 32 / 0.055), transparent);
+  color: #eadcc7;
+}
+
+.home-page .hive-mark__cell {
+  border-color: #d69b29;
+  background: #110c09;
+  box-shadow: 0 0.55rem 1.2rem rgb(0 0 0 / 0.34);
+}
+
+.home-page .hive-mark__cell::after {
+  background: linear-gradient(145deg, #201710, #090706);
+}
+
+.home-page .text-link,
+.home-page .text-link--light {
+  color: #e6b84e;
+  text-decoration-color: #9f600c;
+}
+
+.home-page .final-cta__inner {
+  border: 1px solid rgb(221 160 37 / 0.42);
+  background:
+    radial-gradient(circle at 85% 25%, rgb(226 157 25 / 0.13), transparent 20rem),
+    linear-gradient(135deg, #1a120b, #090706);
+  box-shadow:
+    inset 0 0 0 1px rgb(255 224 150 / 0.03),
+    0 1.4rem 3.4rem rgb(0 0 0 / 0.42);
+}
+
+.home-page .button--gold {
+  border-color: #e2aa3b;
+  background: linear-gradient(180deg, #e7b84d, #bc7205);
+  color: #160d05;
+}
+
+.home-page .site-footer {
+  border-top-color: rgb(215 154 32 / 0.32);
+  background:
+    radial-gradient(circle at 15% 10%, rgb(211 145 24 / 0.07), transparent 20rem),
+    #080605;
+}
+
+.home-page .site-footer__bottom {
+  border-top-color: rgb(215 154 32 / 0.2);
+}
+
+@media (max-width: 72rem) {
+  .home-page .home-hero__grid {
+    grid-template-columns: minmax(20rem, 0.82fr) minmax(31rem, 1.25fr);
+  }
+
+  .home-page .hero-hive {
+    width: 64rem;
+    min-width: 64rem;
+    margin-right: -34rem;
+    margin-left: -4rem;
+  }
+}
+
+@media (max-width: 52rem) {
+  .home-page .js .site-nav,
+  .home-page.js .site-nav,
+  .home-page .site-nav {
+    border-bottom-color: rgb(215 154 32 / 0.28);
+    background: #0d0907;
+    box-shadow: 0 1.2rem 2.4rem rgb(0 0 0 / 0.56);
+  }
+
+  .home-page .home-hero {
+    min-height: auto;
+    padding-top: clamp(3rem, 10vw, 5rem);
+    padding-bottom: 0;
+  }
+
+  .home-page .home-hero__grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .home-page .home-hero__content {
+    max-width: 38rem;
+    padding-bottom: 2rem;
+  }
+
+  .home-page .home-hero h1 {
+    max-width: 12ch;
+    font-size: clamp(3rem, 12.5vw, 5.1rem);
+  }
+
+  .home-page .hero-hive {
+    justify-self: center;
+    width: 53rem;
+    min-width: 53rem;
+    margin: -2rem -15rem -4.8rem -14rem;
+  }
+
+  .home-page .hero-hive__honey-drop {
+    bottom: -13.5%;
+  }
+}
+
+@media (max-width: 38rem) {
+  .home-page .container {
+    width: min(calc(100% - 1.65rem), var(--content-width));
+  }
+
+  .home-page .home-hero h1 {
+    font-size: clamp(2.85rem, 13vw, 4.15rem);
+  }
+
+  .home-page .home-hero__lead {
+    font-size: 1rem;
+  }
+
+  .home-page .button-row {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .home-page .hero-hive {
+    width: 45rem;
+    min-width: 45rem;
+    margin: -1rem -13rem -3.9rem -12rem;
+  }
+
+  .home-page .hero-hive__seam,
+  .home-page .hero-hive__honey-drop {
+    transform-origin: center;
+  }
+}
+
+@media print {
+  body.home-page {
+    background: #fff !important;
+    color: #000 !important;
+  }
+}
+
+/* Final geometry tuning after live render: keep the cluster organic instead of
+   reading as a rigid dashboard matrix, and keep it visible on narrow screens. */
+.home-page .hero-hive__cell--01,
+.home-page .hero-hive__cell--10,
+.home-page .hero-hive__cell--30,
+.home-page .hero-hive__cell--34 {
+  transform: scale(0.84);
+}
+
+.home-page .hero-hive__cell--03,
+.home-page .hero-hive__cell--14,
+.home-page .hero-hive__cell--23,
+.home-page .hero-hive__cell--31 {
+  transform: scale(0.94);
+}
+
+.home-page .hero-hive__cell--04,
+.home-page .hero-hive__cell--13,
+.home-page .hero-hive__cell--17,
+.home-page .hero-hive__cell--24,
+.home-page .hero-hive__cell--32 {
+  transform: scale(1.035);
+}
+
+.home-page .hero-hive__cell--06 { margin-top: -1.4%; }
+.home-page .hero-hive__cell--09 { margin-left: -0.7%; }
+.home-page .hero-hive__cell--15 { margin-top: 1.1%; }
+.home-page .hero-hive__cell--22 { margin-top: 0.9%; }
+.home-page .hero-hive__cell--27 { margin-top: -1.2%; }
+.home-page .hero-hive__cell--33 { margin-left: 0.8%; }
+
+@media (max-width: 72rem) {
+  .home-page .hero-hive {
+    position: relative;
+    top: auto;
+    right: auto;
+    opacity: 1;
+  }
+}
+
+@media (max-width: 52rem) {
+  .home-page .hero-hive {
+    position: relative;
+    top: auto;
+    right: auto;
+    display: block;
+    align-self: auto;
+    justify-self: center;
+    opacity: 1;
   }
 }

@@ -2,7 +2,7 @@
 
 Official public website repository for **SyNERDgy Solutions LLC**.
 
-> Systems fail at the seams. We work at the seams.
+> Order isn’t accidental. It’s engineered.
 
 ## Project purpose
 
