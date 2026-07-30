@@ -55,16 +55,10 @@ Every major section should be classified during drafting:
 ### Capabilities
 
 - Approved capability materials: capabilities, work products, delivery model, controls
-- Project Hub: claim controls and Governance Hive treatment
+- Project Hub: claim controls, contracting profile rules, and Governance Hive treatment
 - Treatment: adapted
-- Verification: all quantified claims, registrations, geographic scope, and leadership facts
-
-### Contracting
-
-- Verified registration and vendor materials only
-- Project Hub: approved publication boundaries
-- Treatment: verified facts plus concise public explanation
-- Verification required before publication for UEI, vendor IDs, NAICS, registration status, address format, and capability-statement URL
+- Verification: all quantified claims, registrations, geographic scope, leadership facts, and downloadable materials
+- MVP note: contracting and representative-work content are consolidated here
 
 ### About
 
@@ -73,12 +67,12 @@ Every major section should be classified during drafting:
 - Treatment: adapted and newly drafted
 - Exclude private biography, medical facts, family details, and legal matters
 
-### Resources
+### Contact
 
-- Project Hub: Governance Hive as representative work
-- Approved public frameworks or samples only
-- Treatment: adapted
-- Verification: every downloadable file must be sanitized for public release
+- Messaging System: approved contact headline and CTA
+- Verified public business email only
+- Treatment: approved and newly drafted
+- Do not add a form or third-party processor without separate approval and privacy review
 
 ## Public repository rules
 

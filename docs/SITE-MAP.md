@@ -1,18 +1,16 @@
-# Version 1 Site Map
+# MVP Site Map
 
 ## Purpose
 
-This document defines the approved lean six-page structure for the SyNERDgy Solutions public consulting website. It controls Version 1 navigation and prevents unrelated brands, internal systems, and future ideas from quietly multiplying into the launch scope, as websites tend to do when left unattended.
+This document defines the approved five-page minimum viable structure for the SyNERDgy Solutions public consulting website. The MVP favors clarity, credibility, and launch speed over publishing every possible page before a visitor has even arrived.
 
 ## Primary navigation
 
 1. Home
 2. Services
 3. Capabilities
-4. Contracting
-5. About
-6. Resources
-7. Discuss a Project, displayed as a contact call to action
+4. About
+5. Contact
 
 ## Page structure
 
@@ -20,7 +18,7 @@ This document defines the approved lean six-page structure for the SyNERDgy Solu
 
 **Purpose:** Establish the problem SyNERDgy solves, introduce the service model, show tangible outputs, explain the brand metaphor, and direct qualified visitors toward capabilities or contact.
 
-**Sections:**
+**Planned sections:**
 
 1. Hero
    - Headline: “Systems fail at the seams. We work at the seams.”
@@ -59,15 +57,13 @@ The five-versus-six category discrepancy remains an open item until final servic
 
 **Headline:** “From fragmented process to defensible performance.”
 
-**Purpose:** Present core capabilities, delivery approach, representative work products, confidentiality and responsible-AI practices, geographic or remote delivery scope, and selected proof such as Governance Hive.
+**Purpose:** Present core capabilities, delivery approach, representative work products, confidentiality and responsible-AI practices, remote delivery scope, contracting readiness, and selected proof such as Governance Hive.
 
-### Contracting
+**MVP consolidation:**
 
-**Headline:** “Contract-ready. Scope-controlled. Evidence-driven.”
-
-**Purpose:** Provide verified contracting information for government buyers, prime contractors, schools, nonprofits, small businesses, and regulated organizations.
-
-Only verified public registrations, identifiers, classifications, service areas, and contact details may appear.
+- Verified contracting information belongs in a dedicated section on this page.
+- Governance Hive and future public resources may be introduced here as representative work.
+- Unverified registrations, identifiers, and downloads remain omitted.
 
 ### About
 
@@ -77,33 +73,32 @@ Only verified public registrations, identifiers, classifications, service areas,
 
 The page is not a founder autobiography and must exclude private medical, family, and legal information.
 
-### Resources
+### Contact
 
-**Purpose:** Provide a controlled home for representative applied work, selected frameworks, the future capability statement, future research, and authoritative public resources.
+**Headline:** “Coming apart at the seams? That’s where we work.”
 
-**Version 1 feature:** Governance Hive, described honestly as representative applied work rather than paid client past performance.
+**Purpose:** Give buyers a direct, low-friction way to start a conversation and explain what information helps SyNERDgy understand an inquiry.
 
-## Contact behavior
+**MVP contact method:**
 
-Version 1 uses reusable contact sections and a public email link:
-
-`synerdgysolutions@gmail.com`
-
-A separate contact page or functional intake form is outside the initial scope unless later approved.
+- Public email: `synerdgysolutions@gmail.com`
+- No form, tracking script, or third-party intake service until separately approved.
 
 ## Footer navigation
 
 - Services
 - Capabilities
-- Contracting
 - About
-- Resources
+- Contact
 - Email contact
-- Accessibility statement or accessibility contact language
-- Privacy language appropriate for a static, tracking-free site
+- Accessibility contact language
+- Static-site privacy language
 
-## Explicitly excluded from Version 1 navigation
+## Deferred from the MVP navigation
 
+- Dedicated Contracting page
+- Dedicated Resources page
+- Capability-statement download until approved
 - Dopamine & Daydreams
 - The Runebound Chronicles
 - Private Notion workspaces

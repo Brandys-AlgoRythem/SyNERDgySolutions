@@ -6,24 +6,23 @@ Official public website repository for **SyNERDgy Solutions LLC**.
 
 ## Project purpose
 
-This repository contains the Version 1 public consulting website for SyNERDgy Solutions. The site will explain the company’s services, capabilities, contracting readiness, operating philosophy, and selected public resources in a clear, accessible, buyer-facing format.
+This repository contains the minimum viable public consulting website for SyNERDgy Solutions. The site explains the company’s services, capabilities, operating philosophy, and contact path in a clear, accessible, buyer-facing format.
 
-## Version 1 scope
+## MVP scope
 
-The initial website includes six public pages:
+The launch website contains five public pages:
 
 1. Home
 2. Services
 3. Capabilities
-4. Contracting
-5. About
-6. Resources
+4. About
+5. Contact
 
-Contact remains a reusable call-to-action section rather than a separate Version 1 page.
+Contracting information is incorporated into the Capabilities page. Representative work and future resources are also introduced there until a dedicated Resources page is justified.
 
 ## Technical approach
 
-Version 1 is intentionally simple and durable:
+The MVP is intentionally simple and durable:
 
 - Semantic HTML5
 - Modern CSS
@@ -37,7 +36,7 @@ Version 1 is intentionally simple and durable:
 ## Repository workflow
 
 - `main` is the stable branch.
-- Active Version 1 development occurs on `build/v1-site-shell`.
+- Active MVP development occurs on `build/v1-site-shell`.
 - Changes are reviewed through a draft pull request before merge or deployment.
 - Production deployment, DNS, and domain changes require explicit approval.
 
@@ -49,7 +48,7 @@ Approved public content is sourced from the SyNERDgy Website & Brand Project Hub
 
 ## Local preview
 
-Once HTML files are added, run a simple local server from the repository root:
+Run a simple local server from the repository root:
 
 ```bash
 python3 -m http.server 8000
@@ -63,4 +62,4 @@ Cloudflare Pages is the planned deployment platform. Deployment is deferred unti
 
 ## Current status
 
-Phase One establishes the repository foundation, public-content controls, sitemap, open-items register, and initial design system.
+Phase Two provides the five-page semantic site shell, shared navigation, accessible mobile menu, shared footer, and branded 404 page. Full page content and visual refinement follow in later phases.

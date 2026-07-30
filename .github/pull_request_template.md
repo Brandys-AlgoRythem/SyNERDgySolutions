@@ -7,9 +7,8 @@ Describe what this pull request changes and why.
 - [ ] Home
 - [ ] Services
 - [ ] Capabilities
-- [ ] Contracting
 - [ ] About
-- [ ] Resources
+- [ ] Contact
 - [ ] Shared navigation or footer
 - [ ] CSS or design tokens
 - [ ] JavaScript behavior

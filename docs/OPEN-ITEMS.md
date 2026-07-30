@@ -6,26 +6,34 @@ This register tracks unresolved items without placing inaccurate placeholders on
 
 | Item | Current state | Required decision or evidence | Public treatment until resolved |
 |---|---|---|---|
-| GitHub contents write access | Blocked | Reauthorize the GitHub integration with repository contents write permission | No remote code changes possible through the current connector |
+| GitHub contents write access | Blocked | Reauthorize the GitHub integration with repository contents write permission | Continue verified local development and package handoff |
 | Final domain | Open | Select and verify production domain | Use no invented canonical domain |
 | Cloudflare Pages project | Not connected | Approve project and repository connection | Document deployment only |
-| Final logo files | Pending | Provide approved SVG and high-resolution PNG assets | Use text wordmark or neutral placeholder during shell build |
+| Final logo files | Pending | Provide approved SVG and high-resolution PNG assets | Use text wordmark during shell build |
 | Favicon | Pending | Approve favicon asset | Keep references out until asset exists |
-| Social preview image | Pending | Approve 1200 × 630 image | Omit image URL or use documented placeholder only in development |
-| Contact workflow | Working | Confirm mailto-only launch or approved intake service | Use `synerdgysolutions@gmail.com` mailto for Version 1 |
+| Social preview image | Pending | Approve 1200 × 630 image | Omit image URL until approved |
+| Contact workflow | Decided for MVP | Revisit only if a form or intake service is needed | Use `synerdgysolutions@gmail.com` mailto |
+
+## MVP architecture
+
+| Item | Current state | Required decision or evidence | Public treatment until resolved |
+|---|---|---|---|
+| Five-page sitemap | Final for MVP | Revisit after launch evidence shows a need | Home, Services, Capabilities, About, Contact |
+| Contracting content location | Final for MVP | Separate page only when content volume justifies it | Place verified contracting profile within Capabilities |
+| Resources content location | Deferred | Separate page after public assets are approved | Introduce Governance Hive within Capabilities |
+| Five versus six service categories | Open | Confirm whether Evidence and Records Architecture is top-level or cross-cutting | Use six as working architecture; review before launch |
 
 ## Content and contracting
 
 | Item | Current state | Required decision or evidence | Public treatment until resolved |
 |---|---|---|---|
-| Five versus six service categories | Open | Confirm whether Evidence and Records Architecture is a top-level service or cross-cutting capability | Use six as working architecture; review before launch |
-| Legal company-name display | Working | Confirm exact footer and contracting-page formatting | Use SyNERDgy Solutions LLC where legal name is needed |
+| Legal company-name display | Working | Confirm exact footer and capabilities-page formatting | Use SyNERDgy Solutions LLC where legal name is needed |
 | Business address format | Requires verification | Select public address or service-area wording | Omit street address |
 | UEI | Requires verification | Confirm active identifier and publication approval | Omit |
 | Vendor IDs | Requires verification | Confirm current identifiers and publication approval | Omit |
 | Primary NAICS | Requires verification | Confirm primary public code | Omit or use general service description |
 | Registration status | Requires verification | Confirm current active status from official source | Do not describe as active until verified |
-| Geographic service area | Open | Confirm remote, Kentucky, regional, or national wording | Use conservative remote-delivery language only after approval |
+| Geographic service area | Open | Confirm remote, Kentucky, regional, or national wording | Use no unsupported geographic claim |
 | Leadership details | Requires verification | Confirm names, titles, and public scope | Use company-level language until approved |
 | Capability statement | Not created | Produce and approve public PDF | Show no broken download link |
 
@@ -33,10 +41,10 @@ This register tracks unresolved items without placing inaccurate placeholders on
 
 | Item | Current state | Required decision or evidence | Public treatment until resolved |
 |---|---|---|---|
-| Governance Hive screenshots | Pending | Select and sanitize approved images | Text-only feature summary |
+| Governance Hive screenshots | Pending | Select and sanitize approved images | Text-only feature summary on Capabilities |
 | Governance Hive description | Working | Approve exact representative-work framing | Do not call it client past performance |
 | Sample work product | Not created | Produce sanitized public sample | Omit download control |
-| Research publications | Pending | Confirm publication and preprint status | Use future-resource wording sparingly |
+| Research publications | Pending | Confirm publication and preprint status | Omit from MVP navigation |
 | Authoritative resource links | Pending | Curate and verify selected links | Do not create an unreviewed link dump |
 
 ## Design and accessibility
@@ -48,7 +56,7 @@ This register tracks unresolved items without placing inaccurate placeholders on
 | Honeycomb pattern | Working | Approve scale, density, and placement | Keep subtle and decorative |
 | Bee artwork | Pending | Provide approved assets | Do not use cartoon or stock bees |
 | Circuit-board details | Future refinement | Determine where technology cues add value | Exclude from structural sprint |
-| Accessibility statement | Pending | Approve wording and contact method | Add before launch |
+| Accessibility statement | Pending | Approve wording and contact method | Provide accessibility contact language before launch |
 | Motion | Deferred | Define restrained motion after shell review | Respect reduced-motion and avoid decorative animation initially |
 
 ## Deployment and review
@@ -57,5 +65,5 @@ This register tracks unresolved items without placing inaccurate placeholders on
 |---|---|---|---|
 | Production branch policy | Working | Confirm `main` as Cloudflare production branch | Do not deploy automatically |
 | Preview deployment | Pending | Connect Cloudflare after initial pull request | Local preview only |
-| Analytics | Excluded from Version 1 | Explicit later decision required | No analytics or cookies |
-| Privacy language | Pending | Approve static-site privacy statement | State no tracking only after verifying implementation |
+| Analytics | Excluded from MVP | Explicit later decision required | No analytics or cookies |
+| Privacy language | Working | Verify implementation matches statement | State that the shell uses no tracking or cookies |
