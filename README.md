@@ -56,10 +56,30 @@ python3 -m http.server 8000
 
 Then open `http://localhost:8000` in a browser.
 
+
+## Validation
+
+Run the repository gate before review or packaging:
+
+```bash
+python3 scripts/validate_site.py
+```
+
+The command uses only the Python standard library and is also executed by the GitHub Actions workflow.
+
+## Production URL configuration
+
+The repository deliberately contains no invented canonical domain. After the real production origin is approved, generate canonical URLs, social-image URLs, `robots.txt`, and the sitemap with:
+
+```bash
+python3 scripts/configure_site_url.py https://approved-domain.example
+python3 scripts/validate_site.py
+```
+
 ## Deployment
 
 Cloudflare Pages is the planned deployment platform. Deployment is deferred until the site passes content, accessibility, mobile, and visual review.
 
 ## Current status
 
-Phase Five completes the MVP visual system and accessibility foundation. The five public pages now share finalized color, typography, spacing, card, navigation, interaction, responsive, reduced-motion, higher-contrast, and print rules. Site metadata, automated validation, deployment, and final launch QA remain separate phases.
+Phase Six completes the domain-neutral metadata, site-file, and automated-validation infrastructure. The repository now includes page-specific social metadata, organization structured data, manifest and icon assets, robots and sitemap controls, a production-URL generator, a standard-library validator, a public claim register, and a GitHub Actions validation workflow. The final domain, remote GitHub publication, deployment, and launch review remain separate gates.

@@ -78,6 +78,14 @@ Every major section should be classified during drafting:
 - Treatment: approved and newly drafted
 - Do not add a form or third-party processor without separate approval and privacy review
 
+## Metadata and structured-data treatment
+
+- Page titles and descriptions are adapted from approved public page copy.
+- Organization structured data publishes only verified company identity, establishment date, public email, locality, service area, and approved capability categories.
+- The favicon and social preview are controlled MVP brand assets, not claims that the final corporate logo is approved.
+- Absolute canonical, Open Graph image, and sitemap URLs are generated only after the real production origin is approved.
+- The 404 page is marked `noindex` and excluded from the sitemap.
+
 ## Public repository rules
 
 The repository may contain:

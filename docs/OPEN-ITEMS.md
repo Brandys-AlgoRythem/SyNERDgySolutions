@@ -10,8 +10,8 @@ This register tracks unresolved items without placing inaccurate placeholders on
 | Final domain | Open | Select and verify production domain | Use no invented canonical domain |
 | Cloudflare Pages project | Not connected | Approve project and repository connection | Document deployment only |
 | Final logo files | Pending | Provide approved SVG and high-resolution PNG assets | Use text wordmark during shell build |
-| Favicon | Pending | Approve favicon asset | Keep references out until asset exists |
-| Social preview image | Pending | Approve 1200 × 630 image | Omit image URL until approved |
+| Favicon | MVP asset complete | Replace only if the final corporate mark is approved | Use current controlled hexagonal mark and manifest hooks |
+| Social preview image | MVP asset complete | Replace only if a final campaign image is approved | Use current 1200 × 630 brand card; absolute URL generated after domain selection |
 | Contact workflow | Decided for MVP | Revisit only if a form or intake service is needed | Use `synerdgysolutions@gmail.com` mailto |
 
 ## MVP architecture
@@ -51,9 +51,9 @@ This register tracks unresolved items without placing inaccurate placeholders on
 
 | Item | Current state | Required decision or evidence | Public treatment until resolved |
 |---|---|---|---|
-| Exact gold | Working | Approve final accessible brand gold values | Use design-token placeholder |
-| Typography | Working | Select licensed web fonts or retain system stack | Use system-font stack |
-| Honeycomb pattern | Working | Approve scale, density, and placement | Keep subtle and decorative |
+| Exact gold | Final for MVP | Revisit with a formal brand package | Use approved accessible design tokens |
+| Typography | Final for MVP | Revisit only if licensed web fonts are approved | Use durable system-font stack |
+| Honeycomb pattern | Final for MVP | Revisit during aesthetic review | Keep subtle, decorative, and non-essential |
 | Bee artwork | Pending | Provide approved assets | Do not use cartoon or stock bees |
 | Circuit-board details | Future refinement | Determine where technology cues add value | Exclude from structural sprint |
 | Accessibility statement | Pending | Approve wording and contact method | Provide accessibility contact language before launch |
