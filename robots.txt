@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# The production sitemap URL is added by scripts/configure_site_url.py
+# after the final domain is approved.
