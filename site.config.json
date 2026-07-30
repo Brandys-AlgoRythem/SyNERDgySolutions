@@ -1,0 +1,14 @@
+{
+  "siteName": "SyNERDgy Solutions",
+  "shortName": "SyNERDgy",
+  "siteUrl": null,
+  "defaultSocialImage": "/assets/images/social-preview.png",
+  "routes": [
+    {"path": "/", "file": "index.html", "indexable": true},
+    {"path": "/services/", "file": "services/index.html", "indexable": true},
+    {"path": "/capabilities/", "file": "capabilities/index.html", "indexable": true},
+    {"path": "/about/", "file": "about/index.html", "indexable": true},
+    {"path": "/contact/", "file": "contact/index.html", "indexable": true},
+    {"path": "/404.html", "file": "404.html", "indexable": false}
+  ]
+}
