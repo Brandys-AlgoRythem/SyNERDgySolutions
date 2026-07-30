@@ -62,4 +62,4 @@ Cloudflare Pages is the planned deployment platform. Deployment is deferred unti
 
 ## Current status
 
-Phase Two provides the five-page semantic site shell, shared navigation, accessible mobile menu, shared footer, and branded 404 page. Full page content and visual refinement follow in later phases.
+Phase Three provides the complete homepage narrative on top of the five-page semantic shell. The homepage now includes the approved hero, problem recognition, six working service areas, four-step public method, tangible deliverables, hive story, and closing contact call to action. Supporting-page content and final visual refinement follow in later phases.

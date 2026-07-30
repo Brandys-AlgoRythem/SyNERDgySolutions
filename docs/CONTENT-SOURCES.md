@@ -44,6 +44,8 @@ Every major section should be classified during drafting:
 - Project Hub: approved messaging stack and homepage architecture
 - Messaging System: hero, problem, method, hive, and contact language
 - Treatment: approved and adapted
+- Phase Three implementation: complete homepage narrative using the approved messaging flow
+- Service overview: six working categories, pending final pre-launch architecture review
 
 ### Services
 
