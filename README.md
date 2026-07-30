@@ -62,4 +62,4 @@ Cloudflare Pages is the planned deployment platform. Deployment is deferred unti
 
 ## Current status
 
-Phase Three provides the complete homepage narrative on top of the five-page semantic shell. The homepage now includes the approved hero, problem recognition, six working service areas, four-step public method, tangible deliverables, hive story, and closing contact call to action. Supporting-page content and final visual refinement follow in later phases.
+Phase Four completes the public content architecture for the five-page MVP. Home, Services, Capabilities, About, and Contact now contain buyer-facing content. The Capabilities page includes verified July 2026 corporate identifiers, a controlled contracting profile, and Governance Hive as clearly labeled representative applied work. Final visual refinement, site metadata, automated validation, and deployment remain separate phases.

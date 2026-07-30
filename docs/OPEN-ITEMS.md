@@ -21,28 +21,28 @@ This register tracks unresolved items without placing inaccurate placeholders on
 | Five-page sitemap | Final for MVP | Revisit after launch evidence shows a need | Home, Services, Capabilities, About, Contact |
 | Contracting content location | Final for MVP | Separate page only when content volume justifies it | Place verified contracting profile within Capabilities |
 | Resources content location | Deferred | Separate page after public assets are approved | Introduce Governance Hive within Capabilities |
-| Five versus six service categories | Open | Confirm whether Evidence and Records Architecture is top-level or cross-cutting | Use six as working architecture; review before launch |
+| Six service categories | Final for MVP | Revisit only after buyer feedback or content expansion | Publish six top-level service areas |
 
 ## Content and contracting
 
 | Item | Current state | Required decision or evidence | Public treatment until resolved |
 |---|---|---|---|
-| Legal company-name display | Working | Confirm exact footer and capabilities-page formatting | Use SyNERDgy Solutions LLC where legal name is needed |
+| Legal company-name display | Verified | Revisit only with a legal-name change | Use SyNERDgy Solutions LLC where legal name is needed |
 | Business address format | Requires verification | Select public address or service-area wording | Omit street address |
-| UEI | Requires verification | Confirm active identifier and publication approval | Omit |
-| Vendor IDs | Requires verification | Confirm current identifiers and publication approval | Omit |
-| Primary NAICS | Requires verification | Confirm primary public code | Omit or use general service description |
+| UEI | Verified for publication | Recheck before procurement submissions | Publish SNVGAWQLG8Q3 without implying active SAM/CAGE status |
+| Kentucky Vendor ID | Verified for publication | Recheck if the state profile changes | Publish KS0031871 |
+| Primary NAICS | Verified for publication | Recheck if the corporate profile changes | Publish 541611 |
 | Registration status | Requires verification | Confirm current active status from official source | Do not describe as active until verified |
-| Geographic service area | Open | Confirm remote, Kentucky, regional, or national wording | Use no unsupported geographic claim |
-| Leadership details | Requires verification | Confirm names, titles, and public scope | Use company-level language until approved |
+| Geographic service area | Verified | Revisit if delivery capacity changes | Kentucky statewide; remote nationwide |
+| Leadership details | Verified for MVP | Recheck when roles change | Publish selected technical and contracting authority only |
 | Capability statement | Not created | Produce and approve public PDF | Show no broken download link |
 
 ## Resources and proof
 
 | Item | Current state | Required decision or evidence | Public treatment until resolved |
 |---|---|---|---|
-| Governance Hive screenshots | Pending | Select and sanitize approved images | Text-only feature summary on Capabilities |
-| Governance Hive description | Working | Approve exact representative-work framing | Do not call it client past performance |
+| Governance Hive visuals | Working | Product screenshots remain optional and must be sanitized | Use the current CSS conceptual dashboard, not private product screens |
+| Governance Hive description | Final for MVP | Revisit after product release or client use | Label as SyNERDgy-developed representative applied work, not client past performance |
 | Sample work product | Not created | Produce sanitized public sample | Omit download control |
 | Research publications | Pending | Confirm publication and preprint status | Omit from MVP navigation |
 | Authoritative resource links | Pending | Curate and verify selected links | Do not create an unreviewed link dump |

@@ -50,23 +50,25 @@ Every major section should be classified during drafting:
 ### Services
 
 - Project Hub: public service categories and publication controls
-- Approved capability materials: verified service scope and deliverables
+- Master Capability, Skills, Assets & Classification Inventory: service scope, deliverables, and claims boundaries
 - Treatment: adapted and newly drafted
-- Verification: confirm final five-versus-six service architecture
+- Phase Four implementation: six buyer-problem-first service areas with typical activities and outputs
 
 ### Capabilities
 
-- Approved capability materials: capabilities, work products, delivery model, controls
-- Project Hub: claim controls, contracting profile rules, and Governance Hive treatment
+- Master Capability, Skills, Assets & Classification Inventory: capabilities, verified July 2026 company facts, work products, delivery model, controls, and claims boundaries
+- Project Hub: contracting-profile rules and Governance Hive treatment
 - Treatment: adapted
-- Verification: all quantified claims, registrations, geographic scope, leadership facts, and downloadable materials
-- MVP note: contracting and representative-work content are consolidated here
+- Phase Four implementation: contracting and representative work consolidated here
+- Published identifiers: Kentucky Vendor ID KS0031871, UEI SNVGAWQLG8Q3, and primary NAICS 541611
+- Status boundary: do not imply an active SAM/CAGE status or government award history
 
 ### About
 
 - Project Hub and Messaging System: company purpose, systems philosophy, hive and seam meaning
-- Verified company materials: selected leadership roles
+- Master Capability, Skills, Assets & Classification Inventory: verified company facts, selected leadership roles, and claims boundaries
 - Treatment: adapted and newly drafted
+- Phase Four implementation: company story, operating principles, leadership authority, human-centered design, and public service boundaries
 - Exclude private biography, medical facts, family details, and legal matters
 
 ### Contact
