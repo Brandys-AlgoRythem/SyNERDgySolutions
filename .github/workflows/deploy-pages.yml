@@ -31,19 +31,6 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Select GitHub Actions as the Pages source
-        uses: actions/github-script@v8
-        with:
-          script: |
-            await github.request("PUT /repos/{owner}/{repo}/pages", {
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              build_type: "workflow",
-              headers: {
-                "X-GitHub-Api-Version": "2022-11-28"
-              }
-            });
-
       - name: Configure production project path
         run: python3 scripts/configure_site_url.py https://brandys-algorythem.github.io/SyNERDgySolutions
 
