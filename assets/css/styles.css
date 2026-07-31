@@ -3043,6 +3043,14 @@ body.home-page {
   background: var(--color-gold);
 }
 
+.site-nav__link--contact[aria-current="page"],
+.site-nav__link--contact[aria-current="page"]:hover {
+  border-color: var(--color-gold-dark);
+  background: var(--color-ink);
+  color: var(--color-surface);
+  box-shadow: inset 0 -0.2rem 0 var(--color-gold);
+}
+
 .site-footer__contact {
   display: flex;
   align-items: flex-start;
