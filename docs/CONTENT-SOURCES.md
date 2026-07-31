@@ -28,8 +28,10 @@ Every major section should be classified during drafting:
 
 | Use | Approved language | Treatment |
 |---|---|---|
-| Primary tagline | Systems fail at the seams. We work at the seams. | Approved |
-| Supporting statement | SyNERDgy reconnects the people, processes, requirements, records, and technology holding organizations together. | Approved |
+| Category label | Enterprise Business Architecture | Approved |
+| Primary tagline | Order isn’t accidental. It’s engineered. | Approved |
+| Supporting statement | We align strategy, governance, operations, and technology to turn organizational complexity into systems that work. | Approved |
+| Scope line | Governance · Operations · Process Design · Documentation · Technology & AI | Approved |
 | Diagnostic line | We find the loose threads. | Approved |
 | Solution line | Fix the seams. Strengthen the system. | Approved |
 | Differentiator | We don’t patch systems. We rebuild them. | Approved |

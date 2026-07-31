@@ -21,9 +21,12 @@ This document defines the approved five-page minimum viable structure for the Sy
 **Planned sections:**
 
 1. Hero
-   - Headline: “Systems fail at the seams. We work at the seams.”
+   - Headline: “Order isn’t accidental. It’s engineered.”
+   - Category label: Enterprise Business Architecture
+   - Supporting line: “We align strategy, governance, operations, and technology to turn organizational complexity into systems that work.”
+   - Scope line: Governance · Operations · Process Design · Documentation · Technology & AI
    - Primary CTA: Explore Our Capabilities
-   - Secondary CTA: Discuss a Project
+   - Secondary CTA: Work With SyNERDgy
 2. Problem recognition
    - Headline: “We find the loose threads.”
 3. Services overview

@@ -143,3 +143,7 @@ Print rules remove navigation, decorative diagrams, buttons, and dark background
 ## Motion
 
 Version 1 uses only short hover transitions. There is no required animation. The site remains complete and understandable with all motion removed.
+
+## Decorative Bee Art Direction
+
+Homepage bees use polished illustrated realism rather than macro photorealism. Keep anatomy recognizable, wing linework crisp, body surfaces smooth, and fur restrained. The two bees should differ in scale, elevation, and angle so they support the asymmetric architectural hive instead of reading as mirrored ornaments.
