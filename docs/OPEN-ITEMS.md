@@ -6,10 +6,10 @@ This register tracks unresolved items without placing inaccurate placeholders on
 
 | Item | Current state | Required decision or evidence | Public treatment until resolved |
 |---|---|---|---|
-| GitHub repair branch | Ready for review | Review and approve the visual-recovery pull request into `edit/v1-post-mvp` | Do not merge into `main` |
-| Current GitHub Pages site | Serves the frozen `main` baseline and remains visually broken | Approve a separate deployment after repair review | Do not change the production source or deploy during this repair |
+| GitHub repair branch | Deployed for live review | Review the visual-recovery pull request into `edit/v1-post-mvp` | Do not merge into `main` |
+| Current GitHub Pages site | Serves the approved repair-branch build with styling and navigation restored | Complete stakeholder and device-level review | Keep `main` frozen; deploy only through the approved repair workflow |
 | Custom domain | Open | Select and verify a custom production domain if desired | Keep project-path-safe relative URLs and no invented canonical domain |
-| Deployment platform | Open after review | Confirm whether GitHub Pages or Cloudflare Pages is the approved production platform | Document compatibility; do not connect or deploy automatically |
+| Deployment platform | GitHub Pages approved for repair review | Confirm the long-term production platform before any custom-domain change | Preserve project-path compatibility and the documented deployment workflow |
 | Final standalone corporate logo files | Not located in connected sources | Approve an SVG and high-resolution PNG if a standalone corporate mark is required | Use the repository’s controlled hive wordmark and approved stylized bee assets |
 | Favicon | MVP asset complete | Replace only if the final corporate mark is approved | Use current controlled hexagonal mark and manifest hooks |
 | Social preview image | MVP asset complete | Replace only if a final campaign image is approved | Use current 1200 × 630 brand card; absolute URL generated after domain selection |
@@ -64,7 +64,7 @@ This register tracks unresolved items without placing inaccurate placeholders on
 
 | Item | Current state | Required decision or evidence | Public treatment until resolved |
 |---|---|---|---|
-| Production branch policy | Final for MVP | Revisit only if deployment architecture changes | Use `main` as the stable production branch; do not deploy automatically |
-| Repair preview | Branch review pending | Review the repair-branch rendering and CI evidence | Keep production GitHub Pages unchanged |
+| Production branch policy | Explicit repair exception approved | Revisit only if deployment architecture changes | Keep `main` frozen; publish this recovery only from `repair/github-pages-visual-recovery` |
+| Repair preview | Live and technically verified | Complete stakeholder and physical-device review | Review at `https://brandys-algorythem.github.io/SyNERDgySolutions/` |
 | Analytics | Excluded from MVP | Explicit later decision required | No analytics or cookies |
 | Privacy language | Implemented for current static site | Re-review before adding forms, analytics, cookies, accounts, or third-party scripts | State the current implementation and safe-inquiry boundary only |

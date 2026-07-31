@@ -81,8 +81,8 @@ python3 scripts/validate_site.py
 
 ## Deployment
 
-The source uses document-relative browser paths so the same build works at a domain root and beneath the GitHub Pages project path `/SyNERDgySolutions/`. Deployment remains a separate approval gate. Do not merge a repair directly into `main`, change the Pages source, or publish a production build without explicit authorization.
+The source uses document-relative browser paths so the same build works at a domain root and beneath the GitHub Pages project path `/SyNERDgySolutions/`. Following explicit approval, `.github/workflows/deploy-pages.yml` publishes the repair branch through the isolated `github-pages-repair` environment. The workflow does not merge into or update `main`.
 
 ## Current status
 
-Version `1.0.9` is the visual-recovery candidate on the repair branch. It preserves the five-page structure, fixes GitHub Pages project-path handling, restores the approved dark hive-and-circuit presentation, rewrites public copy from connected source records, adds public notices, and strengthens automated path validation. The frozen `main` baseline and its current production Pages deployment remain unchanged pending review.
+Version `1.0.9` is live from `repair/github-pages-visual-recovery` at `https://brandys-algorythem.github.io/SyNERDgySolutions/`. It preserves the five-page structure, fixes GitHub Pages project-path handling, restores the approved dark hive-and-circuit presentation, rewrites public copy from connected source records, adds public notices, and strengthens automated path validation. The frozen `main` baseline remains unchanged.

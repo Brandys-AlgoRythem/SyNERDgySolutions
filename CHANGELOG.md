@@ -11,6 +11,7 @@
 - Added verified telephone and contracting details without implying unsupported registrations, awards, clients, or results.
 - Added public privacy, accessibility, website-terms, records, confidentiality, and communication notices derived from approved operating controls.
 - Improved mobile-menu labeling, outside-click behavior, focus handling, responsive layouts, and reduced-motion support.
+- Added an explicitly approved repair-branch GitHub Pages workflow and verified the live five-page deployment without merging into `main`.
 
 ## 1.0.8 — Stylized Bee Composition
 

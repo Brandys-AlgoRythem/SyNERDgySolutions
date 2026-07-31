@@ -6,7 +6,7 @@ Base: `edit/v1-post-mvp`
 
 ## Scope and controls
 
-This repair preserves the existing five-page website: Home, Services, Capabilities, About, and Contact. It does not merge into `main`, change the production deployment source, or deploy the repair. Existing controlled imagery and functionality remain in place.
+This repair preserves the existing five-page website: Home, Services, Capabilities, About, and Contact. It does not merge into `main`. Following separate explicit approval, the repair branch is deployed through the isolated `github-pages-repair` environment. Existing controlled imagery and functionality remain in place.
 
 ## Root-cause diagnosis
 
@@ -102,20 +102,24 @@ Only public-safe facts and adapted public language were added to the repository.
 | Contact active-navigation contrast | Pass after visual review found and corrected the conflicting active-state selector |
 | GitHub Actions — Validate static site, run 12 | Pass on repair commit `fb47ad76f1e0dc123f4370ef00f91830cbdddaf3` |
 | Remote Git tree integrity | Pass: repair tree `809111a25e33e72c82d63134e406ba6c14df8232` exactly matches the locally validated tree |
+| GitHub Pages deployment, run 30602189286 | Pass: repair commit `6b68180db63e81ae2be25491c3e1cfa4322ef495` configured, validated, packaged, uploaded, and reported successfully deployed |
+| Live Pages asset review | Pass: shared CSS, homepage CSS, JavaScript, manifest paths, and both stylized bee images load beneath `/SyNERDgySolutions/` |
+| Live Pages navigation review | Pass: Home → Services → Capabilities → About → Contact → Home completed through the published header links with correct URLs and page titles |
+| Live Pages console review | Pass: no warning or error originated from the site; unrelated browser-extension metadata messages were excluded |
 
 ## Remaining review gate
 
-The available cloud browser exposed a fixed 1363 × 936 viewport and no mobile-emulation capability. Responsive breakpoints, mobile-menu logic, reduced-motion rules, touch targets, and overflow controls were reviewed in source and covered by the repository gate, but a final device-level mobile visual and interaction pass remains required before production deployment. Desktop screenshots were captured from the immutable hosted repair commit.
+The available cloud browser exposed a fixed 1363 × 936 viewport and no mobile-emulation capability. Responsive breakpoints, mobile-menu logic, reduced-motion rules, touch targets, and overflow controls were reviewed in source and covered by the repository gate, but a final physical-device mobile visual and interaction pass remains a launch-readiness follow-up. Desktop screenshots were captured from both the immutable hosted repair commit and the live Pages deployment.
 
 ## Deployment state
 
-The production GitHub Pages site continues to serve the frozen `main` baseline by instruction. The repair branch is reviewable but is not deployed to production. The production URL will remain:
+Separate approval to deploy the repair branch without merging into `main` was granted on July 30, 2026. GitHub Pages now serves repair commit `6b68180db63e81ae2be25491c3e1cfa4322ef495` at:
 
 ```text
 https://brandys-algorythem.github.io/SyNERDgySolutions/
 ```
 
-Live Pages confirmation is therefore a launch gate that can occur only after separate approval to promote and deploy the reviewed repair. Branch-level rendering, local project-path checks, repository validation, and GitHub Actions provide the pre-deployment evidence.
+Deployment run `30602189286` completed successfully through the `github-pages-repair` environment. A live browser check confirmed the restored visual system, project-path-safe assets, working navigation across all five pages, correct page titles, and no site-origin console errors. The `main` branch remains unchanged at `5ac712196d1cd9e722ac307a12573d792b0e8ad5`.
 
 Immutable branch rendering used for browser review:
 
