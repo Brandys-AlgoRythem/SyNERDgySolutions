@@ -1,3 +1,18 @@
+# Changelog
+
+## 1.0.9 — GitHub Pages Visual Recovery
+
+- Replaced root-relative browser URLs with document-relative paths that work beneath `/SyNERDgySolutions/`.
+- Added validation that rejects root-relative HTML, CSS, manifest, script, image, and navigation references.
+- Extended production URL generation to support approved GitHub Pages project paths.
+- Restored a shared dark charcoal, cream, warm-gold, hive, circuit, and bee brand treatment across all five pages.
+- Rewrote vague public copy into specific buyer problems, practical engagement types, deliverables, and delivery controls.
+- Aligned services and capabilities to the six engagement types confirmed in connected project records.
+- Added verified telephone and contracting details without implying unsupported registrations, awards, clients, or results.
+- Added public privacy, accessibility, website-terms, records, confidentiality, and communication notices derived from approved operating controls.
+- Improved mobile-menu labeling, outside-click behavior, focus handling, responsive layouts, and reduced-motion support.
+- Added an explicitly approved repair-branch GitHub Pages workflow and verified the live five-page deployment without merging into `main`.
+
 ## 1.0.8 — Stylized Bee Composition
 
 - Replaced the prior photorealistic bee crops with clean transparent illustrated-realist assets.
@@ -5,8 +20,6 @@
 - Reworked the bee placement into an asymmetric composition with different scale, elevation, and rotation on each side of the hive.
 - Preserved both bees through responsive layouts instead of hiding the right bee on smaller screens.
 - Added restrained brass and shadow treatment so the bees remain eye-catching without competing with the eighteen-cell comb.
-
-# Changelog
 
 ## 1.0.5 - 2026-07-29
 
