@@ -86,6 +86,27 @@ Only public-safe facts and adapted public language were added to the repository.
 | About | Clear company purpose, origin and service area, operating principles, leadership roles, and public-scope boundaries. |
 | Contact | Verified email, telephone, and service area; safe inquiry guidance; engagement and commencement steps; and public privacy, accessibility, terms, records, confidentiality, and communication notices. |
 
+## Validation evidence
+
+| Check | Result |
+|---|---|
+| `python3 scripts/validate_site.py` | Pass: six HTML documents, metadata, links, assets, manifest, robots, sitemap state, structured data, and repository content controls |
+| `python3 -m py_compile scripts/configure_site_url.py scripts/validate_site.py` | Pass |
+| `node --check assets/js/main.js` | Pass |
+| `git diff --check` | Pass |
+| Production URL generation with `https://brandys-algorythem.github.io/SyNERDgySolutions` in a temporary copy | Pass: project-path canonical URLs, social image, robots rule, sitemap routes, and follow-up validation |
+| Local HTTP project-path smoke test | Pass: Home, Services, Capabilities, About, Contact, both stylesheets, JavaScript, manifest, and bee asset returned HTTP 200 beneath `/SyNERDgySolutions/` |
+| Hosted repair-branch browser review at 1363 × 936 | Pass: all five pages loaded their shared styles and script, displayed one H1 and the correct active navigation, showed no broken images, and had no horizontal overflow |
+| Page-origin browser console | Pass: no warning or error from the hosted site; unrelated browser-extension metadata errors were excluded |
+| Keyboard skip navigation | Pass: first Tab focused “Skip to main content” with a visible 3px outline; Enter moved focus to `#main-content` |
+| Contact active-navigation contrast | Pass after visual review found and corrected the conflicting active-state selector |
+| GitHub Actions — Validate static site, run 12 | Pass on repair commit `fb47ad76f1e0dc123f4370ef00f91830cbdddaf3` |
+| Remote Git tree integrity | Pass: repair tree `809111a25e33e72c82d63134e406ba6c14df8232` exactly matches the locally validated tree |
+
+## Remaining review gate
+
+The available cloud browser exposed a fixed 1363 × 936 viewport and no mobile-emulation capability. Responsive breakpoints, mobile-menu logic, reduced-motion rules, touch targets, and overflow controls were reviewed in source and covered by the repository gate, but a final device-level mobile visual and interaction pass remains required before production deployment. Desktop screenshots were captured from the immutable hosted repair commit.
+
 ## Deployment state
 
 The production GitHub Pages site continues to serve the frozen `main` baseline by instruction. The repair branch is reviewable but is not deployed to production. The production URL will remain:
@@ -95,3 +116,9 @@ https://brandys-algorythem.github.io/SyNERDgySolutions/
 ```
 
 Live Pages confirmation is therefore a launch gate that can occur only after separate approval to promote and deploy the reviewed repair. Branch-level rendering, local project-path checks, repository validation, and GitHub Actions provide the pre-deployment evidence.
+
+Immutable branch rendering used for browser review:
+
+```text
+https://raw.githack.com/Brandys-AlgoRythem/SyNERDgySolutions/fb47ad76f1e0dc123f4370ef00f91830cbdddaf3/index.html
+```
