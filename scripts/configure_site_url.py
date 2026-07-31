@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Configure or clear the production site URL without inventing one in source.
+"""Configure or clear the production site base URL without inventing one in source.
 
 Usage:
   python3 scripts/configure_site_url.py https://example.com
+  python3 scripts/configure_site_url.py https://owner.github.io/repository-name
   python3 scripts/configure_site_url.py --clear
 """
 
@@ -31,9 +32,14 @@ def normalize_site_url(raw: str) -> str:
     value = raw.strip().rstrip("/")
     parsed = urlparse(value)
     if parsed.scheme not in {"http", "https"} or not parsed.netloc:
-        raise ValueError("Site URL must be an absolute http(s) origin, such as https://example.com")
-    if parsed.path not in {"", "/"} or parsed.params or parsed.query or parsed.fragment:
-        raise ValueError("Site URL must contain only the origin, with no path, query, or fragment")
+        raise ValueError(
+            "Site URL must be an absolute http(s) base URL, such as "
+            "https://example.com or https://owner.github.io/repository-name"
+        )
+    if parsed.params or parsed.query or parsed.fragment:
+        raise ValueError("Site URL may include a project path but not parameters, a query, or a fragment")
+    if any(part in {".", ".."} for part in parsed.path.split("/")):
+        raise ValueError("Site URL project paths may not contain dot segments")
     return value
 
 
@@ -120,7 +126,11 @@ def update_structured_data(site_url: str | None, social_image: str) -> None:
 
 
 def write_robots(site_url: str | None) -> None:
-    lines = ["User-agent: *", "Allow: /", ""]
+    allowed_path = "/"
+    if site_url:
+        base_path = urlparse(site_url).path.rstrip("/")
+        allowed_path = f"{base_path}/" if base_path else "/"
+    lines = ["User-agent: *", f"Allow: {allowed_path}", ""]
     if site_url:
         lines.append(f"Sitemap: {site_url}/sitemap.xml")
     else:
@@ -154,7 +164,11 @@ def write_sitemap(config: dict, site_url: str | None) -> None:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument("site_url", nargs="?", help="Production origin, such as https://example.com")
+    group.add_argument(
+        "site_url",
+        nargs="?",
+        help="Production base URL, such as https://example.com or https://owner.github.io/repository-name",
+    )
     group.add_argument("--clear", action="store_true", help="Remove production URL metadata")
     args = parser.parse_args()
 

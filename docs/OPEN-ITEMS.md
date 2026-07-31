@@ -6,10 +6,11 @@ This register tracks unresolved items without placing inaccurate placeholders on
 
 | Item | Current state | Required decision or evidence | Public treatment until resolved |
 |---|---|---|---|
-| GitHub contents write access | Blocked | Reauthorize the GitHub integration with repository contents write permission | Continue verified local development and package handoff |
-| Final domain | Open | Select and verify production domain | Use no invented canonical domain |
-| Cloudflare Pages project | Not connected | Approve project and repository connection | Document deployment only |
-| Final logo files | Pending | Provide approved SVG and high-resolution PNG assets | Use text wordmark during shell build |
+| GitHub repair branch | Ready for review | Review and approve the visual-recovery pull request into `edit/v1-post-mvp` | Do not merge into `main` |
+| Current GitHub Pages site | Serves the frozen `main` baseline and remains visually broken | Approve a separate deployment after repair review | Do not change the production source or deploy during this repair |
+| Custom domain | Open | Select and verify a custom production domain if desired | Keep project-path-safe relative URLs and no invented canonical domain |
+| Deployment platform | Open after review | Confirm whether GitHub Pages or Cloudflare Pages is the approved production platform | Document compatibility; do not connect or deploy automatically |
+| Final standalone corporate logo files | Not located in connected sources | Approve an SVG and high-resolution PNG if a standalone corporate mark is required | Use the repository’s controlled hive wordmark and approved stylized bee assets |
 | Favicon | MVP asset complete | Replace only if the final corporate mark is approved | Use current controlled hexagonal mark and manifest hooks |
 | Social preview image | MVP asset complete | Replace only if a final campaign image is approved | Use current 1200 × 630 brand card; absolute URL generated after domain selection |
 | Contact workflow | Decided for MVP | Revisit only if a form or intake service is needed | Use `synerdgysolutions@gmail.com` mailto |
@@ -35,7 +36,7 @@ This register tracks unresolved items without placing inaccurate placeholders on
 | Registration status | Requires verification | Confirm current active status from official source | Do not describe as active until verified |
 | Geographic service area | Verified | Revisit if delivery capacity changes | Kentucky statewide; remote nationwide |
 | Leadership details | Verified for MVP | Recheck when roles change | Publish selected technical and contracting authority only |
-| Capability statement | Not created | Produce and approve public PDF | Show no broken download link |
+| Capability statement | Final procurement statement located in controlled Drive | Approve a public, web-safe distribution copy before adding a download | Offer the current statement through an authorized contact; show no private Drive link |
 
 ## Resources and proof
 
@@ -54,16 +55,16 @@ This register tracks unresolved items without placing inaccurate placeholders on
 | Exact gold | Final for MVP | Revisit with a formal brand package | Use approved accessible design tokens |
 | Typography | Final for MVP | Revisit only if licensed web fonts are approved | Use durable system-font stack |
 | Honeycomb pattern | Final for MVP | Revisit during aesthetic review | Keep subtle, decorative, and non-essential |
-| Bee artwork | Pending | Provide approved assets | Do not use cartoon or stock bees |
-| Circuit-board details | Future refinement | Determine where technology cues add value | Exclude from structural sprint |
-| Accessibility statement | MVP complete | Refine during edit pass if desired | Footer directs accessibility questions to the public business email |
-| Motion | Deferred | Define restrained motion after shell review | Respect reduced-motion and avoid decorative animation initially |
+| Bee artwork | Implemented | Replace only with separately approved brand assets | Use the existing controlled stylized bee assets as decorative images |
+| Circuit-board details | Implemented | Revisit only during an approved brand refinement | Keep decorative, restrained, and outside the reading order |
+| Accessibility statement | Implemented | Recheck after any structural or integration change | Publish the contact-page statement and verified contact channels |
+| Motion | Implemented conservatively | Recheck after any animation change | Respect reduced motion and keep content understandable without motion |
 
 ## Deployment and review
 
 | Item | Current state | Required decision or evidence | Public treatment until resolved |
 |---|---|---|---|
 | Production branch policy | Final for MVP | Revisit only if deployment architecture changes | Use `main` as the stable production branch; do not deploy automatically |
-| Preview deployment | Pending | Connect Cloudflare after initial pull request | Local preview only |
+| Repair preview | Branch review pending | Review the repair-branch rendering and CI evidence | Keep production GitHub Pages unchanged |
 | Analytics | Excluded from MVP | Explicit later decision required | No analytics or cookies |
-| Privacy language | Working | Verify implementation matches statement | State that the shell uses no tracking or cookies |
+| Privacy language | Implemented for current static site | Re-review before adding forms, analytics, cookies, accounts, or third-party scripts | State the current implementation and safe-inquiry boundary only |
