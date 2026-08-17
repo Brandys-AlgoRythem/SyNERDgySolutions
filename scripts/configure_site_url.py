@@ -19,6 +19,7 @@ from xml.sax.saxutils import escape as xml_escape
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG_PATH = ROOT / "site.config.json"
+LINKEDIN_URL = "https://www.linkedin.com/company/synerdgy-solutions-llc/"
 START_MARKER = "  <!-- BEGIN SITE URL METADATA -->"
 END_MARKER = "  <!-- END SITE URL METADATA -->"
 EMPTY_BLOCK = (
@@ -108,6 +109,7 @@ def update_structured_data(site_url: str | None, social_image: str) -> None:
     graph = data.get("@graph", [])
     for node in graph:
         if node.get("@type") == "Organization":
+            node["sameAs"] = [LINKEDIN_URL]
             if site_url:
                 node["url"] = f"{site_url}/"
                 node["logo"] = f"{site_url}/assets/images/icon-512.png"
