@@ -4,6 +4,11 @@ Official public website repository for **SyNERDgy Solutions LLC**.
 
 > Systems fail at the seams. We work at the seams.
 
+## Public links
+
+- Website: https://brandys-algorythem.github.io/SyNERDgySolutions/
+- LinkedIn: https://www.linkedin.com/company/synerdgy-solutions-llc/
+
 ## Project purpose
 
 This repository contains the minimum viable public consulting website for SyNERDgy Solutions. The site explains the company’s services, capabilities, operating philosophy, and contact path in a clear, accessible, buyer-facing format.
@@ -85,4 +90,4 @@ The source uses document-relative browser paths so the same build works at a dom
 
 ## Current status
 
-Version `1.0.9` is live from `repair/github-pages-visual-recovery` at `https://brandys-algorythem.github.io/SyNERDgySolutions/`. It preserves the five-page structure, fixes GitHub Pages project-path handling, restores the approved dark hive-and-circuit presentation, rewrites public copy from connected source records, adds public notices, and strengthens automated path validation. The frozen `main` baseline remains unchanged.
+Version `1.0.9` is live from `repair/github-pages-visual-recovery` at `https://brandys-algorythem.github.io/SyNERDgySolutions/`. It preserves the five-page structure, fixes GitHub Pages project-path handling, restores the approved dark hive-and-circuit presentation, rewrites public copy from connected source records, adds public notices, strengthens automated path validation, links the company LinkedIn profile, and carries deploy-time canonical, social, robots, and sitemap metadata for search discovery. The frozen `main` baseline remains unchanged.
