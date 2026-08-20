@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Configure or clear the production site base URL without inventing one in source.
+"""Configure or clear the production site base URL and public identity metadata.
 
 Usage:
   python3 scripts/configure_site_url.py https://example.com
@@ -19,7 +19,6 @@ from xml.sax.saxutils import escape as xml_escape
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG_PATH = ROOT / "site.config.json"
-LINKEDIN_URL = "https://www.linkedin.com/company/synerdgy-solutions-llc/"
 START_MARKER = "  <!-- BEGIN SITE URL METADATA -->"
 END_MARKER = "  <!-- END SITE URL METADATA -->"
 EMPTY_BLOCK = (
@@ -69,33 +68,105 @@ def replace_url_block(text: str, replacement: str, path: Path) -> str:
     return updated
 
 
-def configure_page(path: Path, route_path: str, site_url: str | None, social_image: str) -> None:
+def configure_page(
+    path: Path,
+    route_path: str,
+    site_url: str | None,
+    social_image: str,
+    indexable: bool,
+    identity_profiles: list[str],
+    keywords: list[str],
+) -> None:
     text = path.read_text(encoding="utf-8")
     if site_url is None:
         text = replace_url_block(text, EMPTY_BLOCK, path)
     else:
         canonical = page_url(site_url, route_path)
         image_url = f"{site_url}{social_image}"
-        block = "\n".join(
-            [
-                START_MARKER,
-                f'  <link rel="canonical" href="{canonical}">',
-                f'  <meta property="og:url" content="{canonical}">',
-                f'  <meta property="og:image" content="{image_url}">',
-                '  <meta property="og:image:width" content="1200">',
-                '  <meta property="og:image:height" content="630">',
-                '  <meta property="og:image:alt" content="SyNERDgy Solutions: Order isn’t accidental. It’s engineered.">',
-                '  <meta name="twitter:card" content="summary_large_image">',
-                f'  <meta name="twitter:image" content="{image_url}">',
-                '  <meta name="twitter:image:alt" content="SyNERDgy Solutions: Order isn’t accidental. It’s engineered.">',
-                END_MARKER,
-            ]
+        robots = (
+            "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+            if indexable
+            else "noindex,follow"
         )
-        text = replace_url_block(text, block, path)
+        block_lines = [
+            START_MARKER,
+            f'  <link rel="canonical" href="{canonical}">',
+            f'  <meta name="robots" content="{robots}">',
+            f'  <meta name="googlebot" content="{robots}">',
+            f'  <meta property="og:url" content="{canonical}">',
+            f'  <meta property="og:image" content="{image_url}">',
+            '  <meta property="og:image:width" content="1200">',
+            '  <meta property="og:image:height" content="630">',
+            '  <meta property="og:image:alt" content="SyNERDgy Solutions: Order isn’t accidental. It’s engineered.">',
+            '  <meta name="twitter:card" content="summary_large_image">',
+            f'  <meta name="twitter:image" content="{image_url}">',
+            '  <meta name="twitter:image:alt" content="SyNERDgy Solutions: Order isn’t accidental. It’s engineered.">',
+        ]
+        if keywords:
+            block_lines.append(f'  <meta name="keywords" content="{", ".join(keywords)}">')
+        for profile in identity_profiles:
+            block_lines.append(f'  <link rel="me" href="{profile}">')
+        block_lines.append(END_MARKER)
+        text = replace_url_block(text, "\n".join(block_lines), path)
     path.write_text(text, encoding="utf-8")
 
 
-def update_structured_data(site_url: str | None, social_image: str) -> None:
+def replace_single(text: str, pattern: str, replacement: str, label: str) -> str:
+    updated, count = re.subn(pattern, replacement, text, count=1, flags=re.S | re.I)
+    if count != 1:
+        raise RuntimeError(f"Could not update {label}")
+    return updated
+
+
+def update_homepage_identity(config: dict) -> None:
+    path = ROOT / "index.html"
+    text = path.read_text(encoding="utf-8")
+    title = config.get("homeTitle", "").strip()
+    description = config.get("homeDescription", "").strip()
+    if not title or not description:
+        return
+
+    text = replace_single(text, r"<title>.*?</title>", f"<title>{title}</title>", "homepage title")
+    text = replace_single(
+        text,
+        r'<meta\s+name="description"\s+content="[^"]*">',
+        f'<meta name="description" content="{description}">',
+        "homepage meta description",
+    )
+    text = replace_single(
+        text,
+        r'<meta\s+property="og:title"\s+content="[^"]*">',
+        f'<meta property="og:title" content="{title}">',
+        "homepage Open Graph title",
+    )
+    text = replace_single(
+        text,
+        r'<meta\s+property="og:description"\s+content="[^"]*">',
+        f'<meta property="og:description" content="{description}">',
+        "homepage Open Graph description",
+    )
+    text = replace_single(
+        text,
+        r'<meta\s+name="twitter:title"\s+content="[^"]*">',
+        f'<meta name="twitter:title" content="{title}">',
+        "homepage Twitter title",
+    )
+    text = replace_single(
+        text,
+        r'<meta\s+name="twitter:description"\s+content="[^"]*">',
+        f'<meta name="twitter:description" content="{description}">',
+        "homepage Twitter description",
+    )
+    path.write_text(text, encoding="utf-8")
+
+
+def update_structured_data(
+    site_url: str | None,
+    social_image: str,
+    identity_profiles: list[str],
+    organization_description: str,
+    knows_about: list[str],
+) -> None:
     path = ROOT / "index.html"
     text = path.read_text(encoding="utf-8")
     pattern = re.compile(
@@ -109,18 +180,39 @@ def update_structured_data(site_url: str | None, social_image: str) -> None:
     graph = data.get("@graph", [])
     for node in graph:
         if node.get("@type") == "Organization":
-            node["sameAs"] = [LINKEDIN_URL]
+            node["sameAs"] = identity_profiles
+            if organization_description:
+                node["description"] = organization_description
+            if knows_about:
+                node["knowsAbout"] = knows_about
+            node["foundingLocation"] = {
+                "@type": "Place",
+                "name": "Lexington, Kentucky, United States",
+            }
+            node["contactPoint"] = {
+                "@type": "ContactPoint",
+                "contactType": "business inquiries",
+                "email": "synerdgysolutions@gmail.com",
+                "areaServed": "US",
+                "availableLanguage": "en",
+            }
             if site_url:
+                node["@id"] = f"{site_url}/#organization"
                 node["url"] = f"{site_url}/"
                 node["logo"] = f"{site_url}/assets/images/icon-512.png"
                 node["image"] = f"{site_url}{social_image}"
             else:
+                node["@id"] = "#organization"
                 for key in ("url", "logo", "image"):
                     node.pop(key, None)
         elif node.get("@type") == "WebSite":
             if site_url:
+                node["@id"] = f"{site_url}/#website"
                 node["url"] = f"{site_url}/"
+                node["publisher"] = {"@id": f"{site_url}/#organization"}
             else:
+                node["@id"] = "#website"
+                node["publisher"] = {"@id": "#organization"}
                 node.pop("url", None)
     serialized = json.dumps(data, indent=2)
     text = pattern.sub(lambda m: m.group(1) + serialized + m.group(3), text, count=1)
@@ -132,14 +224,18 @@ def write_robots(site_url: str | None) -> None:
     if site_url:
         base_path = urlparse(site_url).path.rstrip("/")
         allowed_path = f"{base_path}/" if base_path else "/"
-    lines = ["User-agent: *", f"Allow: {allowed_path}", ""]
+    lines = [
+        "User-agent: *",
+        f"Allow: {allowed_path}",
+        "",
+    ]
     if site_url:
         lines.append(f"Sitemap: {site_url}/sitemap.xml")
     else:
         lines.extend(
             [
                 "# The production sitemap URL is added by scripts/configure_site_url.py",
-                "# after the final domain is approved.",
+                "# after the public site URL is configured.",
             ]
         )
     (ROOT / "robots.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
@@ -149,7 +245,7 @@ def write_sitemap(config: dict, site_url: str | None) -> None:
     lines = ['<?xml version="1.0" encoding="UTF-8"?>']
     if site_url is None:
         lines.append(
-            "<!-- URL entries are generated by scripts/configure_site_url.py after the final domain is approved. -->"
+            "<!-- URL entries are generated by scripts/configure_site_url.py after the public site URL is configured. -->"
         )
         lines.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>')
     else:
@@ -169,14 +265,21 @@ def main() -> int:
     group.add_argument(
         "site_url",
         nargs="?",
-        help="Production base URL, such as https://example.com or https://owner.github.io/repository-name",
+        help="Public site base URL, such as https://example.com or https://owner.github.io/repository-name",
     )
-    group.add_argument("--clear", action="store_true", help="Remove production URL metadata")
+    group.add_argument("--clear", action="store_true", help="Remove public URL metadata")
     args = parser.parse_args()
 
     config = load_config()
     site_url = None if args.clear else normalize_site_url(args.site_url)
     config["siteUrl"] = site_url
+
+    identity_profiles = config.get("identityProfiles", [])
+    keywords = config.get("keywords", [])
+    organization_description = config.get("organizationDescription", "")
+    knows_about = config.get("knowsAbout", [])
+
+    update_homepage_identity(config)
 
     for route in config["routes"]:
         configure_page(
@@ -184,15 +287,24 @@ def main() -> int:
             route["path"],
             site_url,
             config["defaultSocialImage"],
+            route.get("indexable", False),
+            identity_profiles,
+            keywords,
         )
 
-    update_structured_data(site_url, config["defaultSocialImage"])
+    update_structured_data(
+        site_url,
+        config["defaultSocialImage"],
+        identity_profiles,
+        organization_description,
+        knows_about,
+    )
     write_robots(site_url)
     write_sitemap(config, site_url)
     save_config(config)
 
     state = "cleared" if site_url is None else f"set to {site_url}"
-    print(f"Production URL metadata {state}.")
+    print(f"Public URL and identity metadata {state}.")
     return 0
 
 
