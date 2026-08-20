@@ -133,46 +133,47 @@ def replace_single(text: str, pattern: str, replacement: str, label: str) -> str
     return updated
 
 
-def update_homepage_identity(config: dict) -> None:
-    path = ROOT / "index.html"
-    text = path.read_text(encoding="utf-8")
-    title = config.get("homeTitle", "").strip()
-    description = config.get("homeDescription", "").strip()
+def update_page_identity(path: Path, title: str, description: str) -> None:
+    title = title.strip()
+    description = description.strip()
     if not title or not description:
         return
 
+    text = path.read_text(encoding="utf-8")
     safe_title = meta_escape(title)
     safe_description = meta_escape(description)
-    text = replace_single(text, r"<title>.*?</title>", f"<title>{safe_title}</title>", "homepage title")
+    label = str(path.relative_to(ROOT))
+
+    text = replace_single(text, r"<title>.*?</title>", f"<title>{safe_title}</title>", f"{label} title")
     text = replace_single(
         text,
         r'<meta\s+name="description"\s+content="[^"]*">',
         f'<meta name="description" content="{safe_description}">',
-        "homepage meta description",
+        f"{label} meta description",
     )
     text = replace_single(
         text,
         r'<meta\s+property="og:title"\s+content="[^"]*">',
         f'<meta property="og:title" content="{safe_title}">',
-        "homepage Open Graph title",
+        f"{label} Open Graph title",
     )
     text = replace_single(
         text,
         r'<meta\s+property="og:description"\s+content="[^"]*">',
         f'<meta property="og:description" content="{safe_description}">',
-        "homepage Open Graph description",
+        f"{label} Open Graph description",
     )
     text = replace_single(
         text,
         r'<meta\s+name="twitter:title"\s+content="[^"]*">',
         f'<meta name="twitter:title" content="{safe_title}">',
-        "homepage Twitter title",
+        f"{label} Twitter title",
     )
     text = replace_single(
         text,
         r'<meta\s+name="twitter:description"\s+content="[^"]*">',
         f'<meta name="twitter:description" content="{safe_description}">',
-        "homepage Twitter description",
+        f"{label} Twitter description",
     )
     path.write_text(text, encoding="utf-8")
 
@@ -373,11 +374,14 @@ def main() -> int:
     site_name = config.get("siteName", "SyNERDgy Solutions")
     legal_name = config.get("legalName", "SyNERDgy Solutions LLC")
 
-    update_homepage_identity(config)
-
     for route in config["routes"]:
+        path = ROOT / route["file"]
+        seo_title = route.get("seoTitle", "").strip()
+        seo_description = route.get("seoDescription", "").strip()
+        if seo_title and seo_description:
+            update_page_identity(path, seo_title, seo_description)
         configure_page(
-            ROOT / route["file"],
+            path,
             route["path"],
             site_url,
             config["defaultSocialImage"],
