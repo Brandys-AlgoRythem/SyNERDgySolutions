@@ -157,27 +157,37 @@
     {
       "path": "/",
       "file": "index.html",
-      "indexable": true
+      "indexable": true,
+      "seoTitle": "SyNERDgy Solutions LLC | Systems Consulting, Operational Intelligence & Applied R&D",
+      "seoDescription": "SyNERDgy Solutions LLC provides systems and operations consulting, workflow optimization, operational diagnostics, compliance and governance analysis, implementation support, and applied R&D."
     },
     {
       "path": "/services/",
       "file": "services/index.html",
-      "indexable": true
+      "indexable": true,
+      "seoTitle": "Workflow, Compliance & Operations Consulting | SyNERDgy Solutions",
+      "seoDescription": "Explore SyNERDgy consulting services for workflow optimization, process improvement, operational diagnostics, governance and compliance, regulatory studies, corrective action, implementation, records, and contract support."
     },
     {
       "path": "/capabilities/",
       "file": "capabilities/index.html",
-      "indexable": true
+      "indexable": true,
+      "seoTitle": "Systems Analysis, Workflow Optimization & Compliance Capabilities | SyNERDgy",
+      "seoDescription": "SyNERDgy combines root-cause systems analysis, workflow engineering, operational intelligence, governance, compliance, records control, research, and implementation support for complex organizations."
     },
     {
       "path": "/about/",
       "file": "about/index.html",
-      "indexable": true
+      "indexable": true,
+      "seoTitle": "About SyNERDgy Solutions | Systems Consulting & Applied R&D",
+      "seoDescription": "Learn about SyNERDgy Solutions LLC, a Lexington, Kentucky systems consulting and applied R&D firm focused on complex operations, workflow, compliance, governance, and implementation."
     },
     {
       "path": "/contact/",
       "file": "contact/index.html",
-      "indexable": true
+      "indexable": true,
+      "seoTitle": "Contact SyNERDgy Solutions | Consulting & Project Support",
+      "seoDescription": "Contact SyNERDgy Solutions for systems consulting, workflow and process optimization, operational diagnostics, compliance analysis, applied research, corrective action, or implementation support."
     },
     {
       "path": "/404.html",
