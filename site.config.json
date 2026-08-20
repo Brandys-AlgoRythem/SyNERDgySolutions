@@ -3,36 +3,154 @@
   "shortName": "SyNERDgy",
   "legalName": "SyNERDgy Solutions LLC",
   "siteUrl": null,
-  "homeTitle": "SyNERDgy Solutions LLC | Operational Intelligence & Applied R&D",
-  "homeDescription": "SyNERDgy Solutions LLC is a Lexington, Kentucky applied R&D and operational intelligence firm focused on root-cause analysis, governance, compliance, and systems implementation.",
-  "organizationDescription": "SyNERDgy Solutions LLC is a Lexington, Kentucky applied research and operational intelligence firm that reconstructs complex systems, traces root causes and dependencies, maps compliance constraints, and designs implementation-ready interventions.",
+  "homeTitle": "SyNERDgy Solutions LLC | Systems Consulting, Operational Intelligence & Applied R&D",
+  "homeDescription": "SyNERDgy Solutions LLC is a Lexington, Kentucky systems and operations consulting firm providing workflow optimization, operational diagnostics, compliance and governance analysis, implementation support, and applied R&D.",
+  "organizationDescription": "SyNERDgy Solutions LLC is a Lexington, Kentucky systems consulting, operational intelligence, and applied research firm. We diagnose complex operating problems, reconstruct workflows, trace root causes and dependencies, map legal and compliance constraints, strengthen governance and records, and design implementation-ready interventions.",
   "identityProfiles": [
     "https://www.linkedin.com/company/synerdgy-solutions-llc/",
     "https://github.com/Brandys-AlgoRythem/SyNERDgySolutions"
   ],
   "keywords": [
     "SyNERDgy Solutions LLC",
-    "operational intelligence",
-    "applied R&D",
-    "root-cause analysis",
-    "governance",
-    "compliance",
-    "systems analysis",
+    "SyNERDgy Solutions",
+    "systems consulting",
+    "operations consulting",
+    "workflow consulting",
     "workflow optimization",
+    "workflow engineering",
+    "process improvement",
+    "business process optimization",
+    "operational intelligence",
+    "operational diagnostics",
+    "root-cause analysis",
+    "systems analysis",
+    "systems optimization",
+    "governance consulting",
+    "compliance consulting",
+    "governance risk and compliance",
     "regulatory analysis",
-    "Lexington Kentucky"
+    "regulatory studies",
+    "program analysis",
+    "corrective action support",
+    "process rebuilding",
+    "implementation consulting",
+    "implementation support",
+    "evidence and records management",
+    "document control",
+    "administrative surge support",
+    "prime contractor support",
+    "subcontractor support",
+    "government contracting support",
+    "AI governance",
+    "responsible technology",
+    "applied R&D",
+    "applied research and development",
+    "Lexington Kentucky consulting"
   ],
   "knowsAbout": [
+    "Systems and operations consulting",
+    "Workflow optimization and workflow engineering",
     "Operational intelligence",
+    "Operational diagnostics",
     "Applied research and development",
-    "Root-cause analysis",
+    "Root-cause and dependency analysis",
     "Governance, risk and compliance",
+    "Compliance-by-design",
     "Regulatory and program analysis",
-    "Workflow and systems optimization",
-    "Process and implementation design",
-    "Evidence and records architecture",
+    "Business process improvement",
+    "Process rebuilding and implementation",
+    "Corrective-action systems",
+    "Evidence, records and document control",
+    "Administrative surge and continuity support",
+    "Prime and subcontract workstream support",
     "Responsible AI and technology governance",
     "Cross-functional systems analysis"
+  ],
+  "serviceCatalog": [
+    {
+      "name": "Systems & Operations Consulting",
+      "serviceType": "Systems and operations consulting",
+      "description": "Diagnose fragmented operating systems, clarify ownership and dependencies, redesign workflows, and support implementation."
+    },
+    {
+      "name": "Workflow Optimization & Process Rebuilding",
+      "serviceType": "Workflow optimization and business process improvement",
+      "description": "Map current-state work, identify bottlenecks and failure points, rebuild task paths and controls, and create implementation-ready processes."
+    },
+    {
+      "name": "Operational Diagnostics",
+      "serviceType": "Operational diagnostics and root-cause analysis",
+      "description": "Trace symptoms to underlying structural causes across people, process, requirements, records, technology, ownership, and handoffs."
+    },
+    {
+      "name": "Governance, Compliance & Regulatory Analysis",
+      "serviceType": "Governance and compliance consulting",
+      "description": "Identify applicable legal, regulatory, contractual, policy, and program constraints and stress-test proposed interventions against them."
+    },
+    {
+      "name": "Regulatory & Program Studies",
+      "serviceType": "Regulatory research and program analysis",
+      "description": "Research authority, reconstruct how programs operate, gather evidence, develop findings, and produce practical recommendations."
+    },
+    {
+      "name": "Corrective-Action & Implementation Support",
+      "serviceType": "Corrective action and implementation consulting",
+      "description": "Turn findings into assigned actions, controls, evidence requirements, progress tracking, escalation paths, and verified closure."
+    },
+    {
+      "name": "Evidence, Records & Document Control",
+      "serviceType": "Records architecture and document control",
+      "description": "Build records and evidence structures that preserve decisions, requirements, approvals, ownership, and auditability."
+    },
+    {
+      "name": "Administrative Surge & Continuity Support",
+      "serviceType": "Administrative surge and continuity support",
+      "description": "Stabilize intake, backlog, reporting, records, status tracking, and operational handoffs during overload or disruption."
+    },
+    {
+      "name": "Prime & Subcontract Workstream Support",
+      "serviceType": "Government and commercial contract support",
+      "description": "Provide research, technical writing, document control, project operations, workflow design, and specialized analysis for defined workstreams."
+    },
+    {
+      "name": "Applied R&D & Operational Intelligence",
+      "serviceType": "Applied research and operational intelligence",
+      "description": "Study complex real-world systems, identify reusable patterns, stress-test methods, and develop practical diagnostic and decision-support approaches."
+    }
+  ],
+  "credentials": [
+    {
+      "name": "SAM.gov Entity Registration",
+      "credentialCategory": "Federal vendor and contractor registration",
+      "recognizedBy": {
+        "name": "U.S. General Services Administration",
+        "url": "https://sam.gov/"
+      }
+    },
+    {
+      "name": "CAGE Registration",
+      "credentialCategory": "Federal supplier identification",
+      "recognizedBy": {
+        "name": "Defense Logistics Agency",
+        "url": "https://cage.dla.mil/"
+      }
+    },
+    {
+      "name": "SBA Small Business Profile",
+      "credentialCategory": "Small business federal contracting profile",
+      "recognizedBy": {
+        "name": "U.S. Small Business Administration",
+        "url": "https://www.sba.gov/"
+      }
+    },
+    {
+      "name": "Commonwealth of Kentucky Vendor Registration",
+      "credentialCategory": "State vendor registration",
+      "recognizedBy": {
+        "name": "Commonwealth of Kentucky",
+        "url": "https://finance.ky.gov/"
+      }
+    }
   ],
   "defaultSocialImage": "/assets/images/social-preview.png",
   "routes": [
