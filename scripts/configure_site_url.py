@@ -10,6 +10,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import html
 import json
 import re
 import sys
@@ -68,6 +69,10 @@ def replace_url_block(text: str, replacement: str, path: Path) -> str:
     return updated
 
 
+def meta_escape(value: str) -> str:
+    return html.escape(value, quote=True)
+
+
 def configure_page(
     path: Path,
     route_path: str,
@@ -76,6 +81,8 @@ def configure_page(
     indexable: bool,
     identity_profiles: list[str],
     keywords: list[str],
+    site_name: str,
+    legal_name: str,
 ) -> None:
     text = path.read_text(encoding="utf-8")
     if site_url is None:
@@ -88,24 +95,32 @@ def configure_page(
             if indexable
             else "noindex,follow"
         )
+        keyword_text = ", ".join(keywords)
         block_lines = [
             START_MARKER,
-            f'  <link rel="canonical" href="{canonical}">',
+            f'  <link rel="canonical" href="{meta_escape(canonical)}">',
             f'  <meta name="robots" content="{robots}">',
             f'  <meta name="googlebot" content="{robots}">',
-            f'  <meta property="og:url" content="{canonical}">',
-            f'  <meta property="og:image" content="{image_url}">',
+            f'  <meta name="author" content="{meta_escape(legal_name)}">',
+            f'  <meta name="publisher" content="{meta_escape(legal_name)}">',
+            f'  <meta name="application-name" content="{meta_escape(site_name)}">',
+            '  <meta name="geo.region" content="US-KY">',
+            '  <meta name="geo.placename" content="Lexington, Kentucky">',
+            f'  <meta property="og:url" content="{meta_escape(canonical)}">',
+            f'  <meta property="og:image" content="{meta_escape(image_url)}">',
             '  <meta property="og:image:width" content="1200">',
             '  <meta property="og:image:height" content="630">',
             '  <meta property="og:image:alt" content="SyNERDgy Solutions: Order isn’t accidental. It’s engineered.">',
             '  <meta name="twitter:card" content="summary_large_image">',
-            f'  <meta name="twitter:image" content="{image_url}">',
+            f'  <meta name="twitter:image" content="{meta_escape(image_url)}">',
             '  <meta name="twitter:image:alt" content="SyNERDgy Solutions: Order isn’t accidental. It’s engineered.">',
         ]
-        if keywords:
-            block_lines.append(f'  <meta name="keywords" content="{", ".join(keywords)}">')
+        if keyword_text:
+            block_lines.append(f'  <meta name="keywords" content="{meta_escape(keyword_text)}">')
         for profile in identity_profiles:
-            block_lines.append(f'  <link rel="me" href="{profile}">')
+            safe_profile = meta_escape(profile)
+            block_lines.append(f'  <link rel="me" href="{safe_profile}">')
+            block_lines.append(f'  <meta property="og:see_also" content="{safe_profile}">')
         block_lines.append(END_MARKER)
         text = replace_url_block(text, "\n".join(block_lines), path)
     path.write_text(text, encoding="utf-8")
@@ -126,38 +141,100 @@ def update_homepage_identity(config: dict) -> None:
     if not title or not description:
         return
 
-    text = replace_single(text, r"<title>.*?</title>", f"<title>{title}</title>", "homepage title")
+    safe_title = meta_escape(title)
+    safe_description = meta_escape(description)
+    text = replace_single(text, r"<title>.*?</title>", f"<title>{safe_title}</title>", "homepage title")
     text = replace_single(
         text,
         r'<meta\s+name="description"\s+content="[^"]*">',
-        f'<meta name="description" content="{description}">',
+        f'<meta name="description" content="{safe_description}">',
         "homepage meta description",
     )
     text = replace_single(
         text,
         r'<meta\s+property="og:title"\s+content="[^"]*">',
-        f'<meta property="og:title" content="{title}">',
+        f'<meta property="og:title" content="{safe_title}">',
         "homepage Open Graph title",
     )
     text = replace_single(
         text,
         r'<meta\s+property="og:description"\s+content="[^"]*">',
-        f'<meta property="og:description" content="{description}">',
+        f'<meta property="og:description" content="{safe_description}">',
         "homepage Open Graph description",
     )
     text = replace_single(
         text,
         r'<meta\s+name="twitter:title"\s+content="[^"]*">',
-        f'<meta name="twitter:title" content="{title}">',
+        f'<meta name="twitter:title" content="{safe_title}">',
         "homepage Twitter title",
     )
     text = replace_single(
         text,
         r'<meta\s+name="twitter:description"\s+content="[^"]*">',
-        f'<meta name="twitter:description" content="{description}">',
+        f'<meta name="twitter:description" content="{safe_description}">',
         "homepage Twitter description",
     )
     path.write_text(text, encoding="utf-8")
+
+
+def service_offer_catalog(service_catalog: list[dict], organization_id: str) -> dict | None:
+    if not service_catalog:
+        return None
+    offers = []
+    for service in service_catalog:
+        name = service.get("name", "").strip()
+        if not name:
+            continue
+        item = {
+            "@type": "Service",
+            "name": name,
+            "provider": {"@id": organization_id},
+            "areaServed": {
+                "@type": "Country",
+                "name": "United States",
+            },
+        }
+        service_type = service.get("serviceType", "").strip()
+        description = service.get("description", "").strip()
+        if service_type:
+            item["serviceType"] = service_type
+        if description:
+            item["description"] = description
+        offers.append({"@type": "Offer", "itemOffered": item})
+    if not offers:
+        return None
+    return {
+        "@type": "OfferCatalog",
+        "name": "SyNERDgy Solutions Consulting, Workflow, Compliance, Operations, and R&D Services",
+        "itemListElement": offers,
+    }
+
+
+def credential_nodes(credentials: list[dict]) -> list[dict]:
+    nodes = []
+    for credential in credentials:
+        name = credential.get("name", "").strip()
+        if not name:
+            continue
+        node = {
+            "@type": "Credential",
+            "name": name,
+        }
+        category = credential.get("credentialCategory", "").strip()
+        if category:
+            node["credentialCategory"] = category
+        recognized_by = credential.get("recognizedBy") or {}
+        recognized_name = recognized_by.get("name", "").strip()
+        recognized_url = recognized_by.get("url", "").strip()
+        if recognized_name or recognized_url:
+            authority = {"@type": "Organization"}
+            if recognized_name:
+                authority["name"] = recognized_name
+            if recognized_url:
+                authority["url"] = recognized_url
+            node["recognizedBy"] = authority
+        nodes.append(node)
+    return nodes
 
 
 def update_structured_data(
@@ -166,6 +243,8 @@ def update_structured_data(
     identity_profiles: list[str],
     organization_description: str,
     knows_about: list[str],
+    service_catalog: list[dict],
+    credentials: list[dict],
 ) -> None:
     path = ROOT / "index.html"
     text = path.read_text(encoding="utf-8")
@@ -178,9 +257,14 @@ def update_structured_data(
         raise RuntimeError("Homepage organization schema block was not found")
     data = json.loads(match.group(2))
     graph = data.get("@graph", [])
+    organization_id = f"{site_url}/#organization" if site_url else "#organization"
+    website_id = f"{site_url}/#website" if site_url else "#website"
+
     for node in graph:
         if node.get("@type") == "Organization":
+            node["@id"] = organization_id
             node["sameAs"] = identity_profiles
+            node["slogan"] = "Systems fail at the seams. We work there."
             if organization_description:
                 node["description"] = organization_description
             if knows_about:
@@ -196,23 +280,29 @@ def update_structured_data(
                 "areaServed": "US",
                 "availableLanguage": "en",
             }
+            catalog = service_offer_catalog(service_catalog, organization_id)
+            if catalog:
+                node["hasOfferCatalog"] = catalog
+            else:
+                node.pop("hasOfferCatalog", None)
+            credential_list = credential_nodes(credentials)
+            if credential_list:
+                node["hasCredential"] = credential_list
+            else:
+                node.pop("hasCredential", None)
             if site_url:
-                node["@id"] = f"{site_url}/#organization"
                 node["url"] = f"{site_url}/"
                 node["logo"] = f"{site_url}/assets/images/icon-512.png"
                 node["image"] = f"{site_url}{social_image}"
             else:
-                node["@id"] = "#organization"
                 for key in ("url", "logo", "image"):
                     node.pop(key, None)
         elif node.get("@type") == "WebSite":
+            node["@id"] = website_id
+            node["publisher"] = {"@id": organization_id}
             if site_url:
-                node["@id"] = f"{site_url}/#website"
                 node["url"] = f"{site_url}/"
-                node["publisher"] = {"@id": f"{site_url}/#organization"}
             else:
-                node["@id"] = "#website"
-                node["publisher"] = {"@id": "#organization"}
                 node.pop("url", None)
     serialized = json.dumps(data, indent=2)
     text = pattern.sub(lambda m: m.group(1) + serialized + m.group(3), text, count=1)
@@ -278,6 +368,10 @@ def main() -> int:
     keywords = config.get("keywords", [])
     organization_description = config.get("organizationDescription", "")
     knows_about = config.get("knowsAbout", [])
+    service_catalog = config.get("serviceCatalog", [])
+    credentials = config.get("credentials", [])
+    site_name = config.get("siteName", "SyNERDgy Solutions")
+    legal_name = config.get("legalName", "SyNERDgy Solutions LLC")
 
     update_homepage_identity(config)
 
@@ -290,6 +384,8 @@ def main() -> int:
             route.get("indexable", False),
             identity_profiles,
             keywords,
+            site_name,
+            legal_name,
         )
 
     update_structured_data(
@@ -298,6 +394,8 @@ def main() -> int:
         identity_profiles,
         organization_description,
         knows_about,
+        service_catalog,
+        credentials,
     )
     write_robots(site_url)
     write_sitemap(config, site_url)
