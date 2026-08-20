@@ -6,11 +6,17 @@
 
   const toggle = document.querySelector('[data-nav-toggle]');
   const navigation = document.querySelector('[data-site-nav]');
+  const toggleLabel = toggle?.querySelector('.nav-toggle__label');
+
+  const setToggleLabel = (isOpen) => {
+    if (toggleLabel) toggleLabel.textContent = isOpen ? 'Close' : 'Menu';
+  };
 
   const closeMenu = ({ restoreFocus = false } = {}) => {
     if (!toggle || !navigation) return;
     toggle.setAttribute('aria-expanded', 'false');
     navigation.dataset.open = 'false';
+    setToggleLabel(false);
     if (restoreFocus) toggle.focus();
   };
 
@@ -18,6 +24,7 @@
     if (!toggle || !navigation) return;
     toggle.setAttribute('aria-expanded', 'true');
     navigation.dataset.open = 'true';
+    setToggleLabel(true);
   };
 
   if (toggle && navigation) {
@@ -33,7 +40,18 @@
     });
 
     navigation.addEventListener('click', (event) => {
-      if (event.target.closest('a')) closeMenu();
+      if (event.target instanceof Element && event.target.closest('a')) closeMenu();
+    });
+
+    document.addEventListener('click', (event) => {
+      if (
+        toggle.getAttribute('aria-expanded') === 'true'
+        && event.target instanceof Node
+        && !toggle.contains(event.target)
+        && !navigation.contains(event.target)
+      ) {
+        closeMenu();
+      }
     });
 
     document.addEventListener('keydown', (event) => {

@@ -28,16 +28,30 @@ Every major section should be classified during drafting:
 
 | Use | Approved language | Treatment |
 |---|---|---|
-| Category label | Enterprise Business Architecture | Approved |
-| Primary tagline | Order isn’t accidental. It’s engineered. | Approved |
-| Supporting statement | We align strategy, governance, operations, and technology to turn organizational complexity into systems that work. | Approved |
-| Scope line | Governance · Operations · Process Design · Documentation · Technology & AI | Approved |
+| Category label | Systems & Operations Consulting | Approved |
+| Primary tagline | Systems fail at the seams. We work at the seams. | Approved |
+| Supporting statement | SyNERDgy reconnects the people, processes, requirements, records, and technology holding organizations together. | Approved |
 | Diagnostic line | We find the loose threads. | Approved |
 | Solution line | Fix the seams. Strengthen the system. | Approved |
 | Differentiator | We don’t patch systems. We rebuild them. | Approved |
 | Hive connection | Structure in every cell. Strength at every seam. | Approved |
 | Contact line | Coming apart at the seams? That’s where we work. | Approved |
 | CTA | Strengthen Your System | Approved |
+| Engagement message | Easy to engage. Built to remain accountable. | Directed for the recovery pass |
+| Operating principle | Fast where it matters. Controlled where it counts. | Directed for the recovery pass |
+
+## Approved engagement types
+
+The public service architecture follows the six engagement types confirmed in the connected project materials:
+
+1. Regulatory or Program Study
+2. Operational Diagnostic
+3. Process Rebuild
+4. Corrective-Action Support
+5. Administrative Surge
+6. Prime or Subcontract Support
+
+Page headings may use natural grammatical variations such as “Regulatory & Program Studies” and “Administrative Surge Support,” but must not change the scope or imply unsupported credentials.
 
 ## Page-source map
 
@@ -46,22 +60,23 @@ Every major section should be classified during drafting:
 - Project Hub: approved messaging stack and homepage architecture
 - Messaging System: hero, problem, method, hive, and contact language
 - Treatment: approved and adapted
-- Phase Three implementation: complete homepage narrative using the approved messaging flow
-- Service overview: six working categories, pending final pre-launch architecture review
+- Visual-recovery implementation: practical problem statements, the approved seam-and-hive narrative, and the six confirmed engagement types
 
 ### Services
 
 - Project Hub: public service categories and publication controls
 - Master Capability, Skills, Assets & Classification Inventory: service scope, deliverables, and claims boundaries
 - Treatment: adapted and newly drafted
-- Phase Four implementation: six buyer-problem-first service areas with typical activities and outputs
+- Visual-recovery implementation: six buyer-problem-first engagement areas with practical activities and deliverables
 
 ### Capabilities
 
 - Master Capability, Skills, Assets & Classification Inventory: capabilities, verified July 2026 company facts, work products, delivery model, controls, and claims boundaries
+- Final Procurement Capability Statement: procurement positioning and verified capability language
+- Technical Proposal — Final Selection Rationale: mobilization, communication, records, access, and delivery controls
 - Project Hub: contracting-profile rules and Governance Hive treatment
 - Treatment: adapted
-- Phase Four implementation: contracting and representative work consolidated here
+- Visual-recovery implementation: capability families, delivery controls, contracting profile, and engagement models consolidated here
 - Published identifiers: Kentucky Vendor ID KS0031871, UEI SNVGAWQLG8Q3, and primary NAICS 541611
 - Status boundary: do not imply an active SAM/CAGE status or government award history
 
@@ -69,23 +84,35 @@ Every major section should be classified during drafting:
 
 - Project Hub and Messaging System: company purpose, systems philosophy, hive and seam meaning
 - Master Capability, Skills, Assets & Classification Inventory: verified company facts, selected leadership roles, and claims boundaries
+- Connected Notion company, leadership, and contracting pages: role and authority verification
 - Treatment: adapted and newly drafted
-- Phase Four implementation: company story, operating principles, leadership authority, human-centered design, and public service boundaries
+- Visual-recovery implementation: company purpose, operating principles, leadership authority, and public service boundaries
 - Exclude private biography, medical facts, family details, and legal matters
 
 ### Contact
 
 - Messaging System: approved contact headline and CTA
-- Verified public business email only
-- Treatment: approved and newly drafted
+- Technical Proposal — Final Selection Rationale: authorized contacts, commencement conditions, secure exchange, reporting dates, and written communication controls
+- Internal Governance Operations Charter: records, confidentiality, access, escalation, retention, and disposition controls
+- Cost Proposal and Commercial Terms: engagement and commencement controls
+- Connected Notion Security, Confidentiality & AI Controls and Company & Contracting Information pages
+- Verified public business email and telephone
+- Treatment: approved, adapted, and newly drafted
 - Do not add a form or third-party processor without separate approval and privacy review
+
+### Public notices
+
+- **Privacy:** describes the implemented static site and safe initial-contact boundary; it does not promise treatment beyond the applicable agreement and governing requirements.
+- **Accessibility:** describes the implemented keyboard, focus, contrast, responsive, and reduced-motion features and provides the verified public contact channels.
+- **Terms:** states that website information is general and that an engagement requires the applicable written agreement, authorization, scope, and notice to proceed.
+- **Records, confidentiality, and communication:** translates the approved controls into public expectations without publishing internal procedures or confidential examples.
 
 ## Metadata and structured-data treatment
 
 - Page titles and descriptions are adapted from approved public page copy.
 - Organization structured data publishes only verified company identity, establishment date, public email, locality, service area, and approved capability categories.
 - The favicon and social preview are controlled MVP brand assets, not claims that the final corporate logo is approved.
-- Absolute canonical, Open Graph image, and sitemap URLs are generated only after the real production origin is approved.
+- Absolute canonical, Open Graph image, and sitemap URLs are generated only after the production origin, including any GitHub Pages project path, is approved.
 - The 404 page is marked `noindex` and excluded from the sitemap.
 
 ## Public repository rules
