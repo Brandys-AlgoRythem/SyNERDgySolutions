@@ -6,7 +6,7 @@ This register tracks unresolved items without placing inaccurate placeholders on
 
 | Item | Current state | Required decision or evidence | Public treatment until resolved |
 |---|---|---|---|
-| GitHub contents write access | Blocked | Reauthorize the GitHub integration with repository contents write permission | Continue verified local development and package handoff |
+| GitHub contents write access | Available and verified August 23, 2026 | Recheck only if repository permissions change | Repository content can be maintained directly |
 | Final domain | Open | Select and verify production domain | Use no invented canonical domain |
 | Cloudflare Pages project | Not connected | Approve project and repository connection | Document deployment only |
 | Final logo files | Pending | Provide approved SVG and high-resolution PNG assets | Use text wordmark during shell build |
@@ -29,13 +29,14 @@ This register tracks unresolved items without placing inaccurate placeholders on
 |---|---|---|---|
 | Legal company-name display | Verified | Revisit only with a legal-name change | Use SyNERDgy Solutions LLC where legal name is needed |
 | Business address format | Requires verification | Select public address or service-area wording | Omit street address |
-| UEI | Verified for publication | Recheck before procurement submissions | Publish SNVGAWQLG8Q3 without implying active SAM/CAGE status |
+| UEI | Verified for publication | Recheck before procurement submissions | Publish SNVGAWQLG8Q3 |
+| CAGE | Verified for publication | Recheck before procurement submissions | Publish 232V9 |
 | Kentucky Vendor ID | Verified for publication | Recheck if the state profile changes | Publish KS0031871 |
 | Primary NAICS | Verified for publication | Recheck if the corporate profile changes | Publish 541611 |
-| Registration status | Requires verification | Confirm current active status from official source | Do not describe as active until verified |
+| Federal registration status | Identifiers verified; live SAM status should be rechecked for each procurement action | Confirm current active status from official source when material to a submission | Publish verified UEI and CAGE without overstating award history or a stale registration status |
 | Geographic service area | Verified | Revisit if delivery capacity changes | Kentucky statewide; remote nationwide |
 | Leadership details | Verified for MVP | Recheck when roles change | Publish selected technical and contracting authority only |
-| Capability statement | Not created | Produce and approve public PDF | Show no broken download link |
+| Capability statement | Approved and in current use | Add a public PDF only when intentionally approved for repository publication | State that the current capability statement is available by request; do not claim it is still being prepared |
 
 ## Resources and proof
 
@@ -64,6 +65,6 @@ This register tracks unresolved items without placing inaccurate placeholders on
 | Item | Current state | Required decision or evidence | Public treatment until resolved |
 |---|---|---|---|
 | Production branch policy | Final for MVP | Revisit only if deployment architecture changes | Use `main` as the stable production branch; do not deploy automatically |
-| Preview deployment | Pending | Connect Cloudflare after initial pull request | Local preview only |
+| Preview deployment | Pending | Connect the selected host after deployment decision | Local or repository preview only until hosting is connected |
 | Analytics | Excluded from MVP | Explicit later decision required | No analytics or cookies |
 | Privacy language | Working | Verify implementation matches statement | State that the shell uses no tracking or cookies |
