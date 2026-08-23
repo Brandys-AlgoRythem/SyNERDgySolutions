@@ -1,5 +1,17 @@
 # Changelog
 
+## Post-MVP update — August 23, 2026
+
+### Contracting profile refresh
+
+- Confirmed public UEI `SNVGAWQLG8Q3`
+- Added verified CAGE `232V9` to the public Capabilities page
+- Removed obsolete language treating SAM/CAGE information as unverified
+- Updated the capability-statement section to reflect that a current approved statement is in use and available by request
+- Refreshed the public claim register, content-source controls, open-items register, and repository status documentation
+- Confirmed GitHub contents write access is available
+- Preserved the claims boundary that identifiers do not imply government award history, certification status, or eligibility for every procurement
+
 ## 1.0.0-mvp — July 28, 2026
 
 ### Included
@@ -14,13 +26,13 @@
 - Standard-library validation script and GitHub Actions workflow
 - Public claim register, QA checklist, and deployment controls
 
-### Intentionally deferred
+### Intentionally deferred at the MVP freeze
 
 - Final production domain
 - Cloudflare Pages connection
-- Live GitHub publication while repository write access remains blocked
+- Live GitHub publication while repository write access remained blocked at that time
 - Final corporate logo asset replacement
 - Capability statement PDF and public sample work product
 - Analytics, forms, cookies, and third-party intake services
 
-The MVP is frozen as the reviewable baseline. Subsequent copy, visual, and content refinements belong on the post-MVP edit branch.
+The MVP remains the historical reviewable baseline. Subsequent copy, visual, content, and contracting-profile refinements are tracked above or in later entries.
