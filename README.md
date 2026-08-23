@@ -6,7 +6,7 @@ Official public website repository for **SyNERDgy Solutions LLC**.
 
 ## Project purpose
 
-This repository contains the minimum viable public consulting website for SyNERDgy Solutions. The site explains the company’s services, capabilities, operating philosophy, and contact path in a clear, accessible, buyer-facing format.
+This repository contains the minimum viable public consulting website for SyNERDgy Solutions. The site explains the company’s services, capabilities, operating philosophy, contracting profile, and contact path in a clear, accessible, buyer-facing format.
 
 ## MVP scope
 
@@ -31,20 +31,30 @@ The MVP is intentionally simple and durable:
 - No required package manager
 - No backend
 - No cookies or analytics
-- Static deployment through Cloudflare Pages
+- Static-host compatible
 
 ## Repository workflow
 
-- `main` preserves the frozen `1.0.0-mvp` baseline.
-- Post-MVP refinements occur on `edit/v1-post-mvp`.
-- The completed construction history remains on `build/v1-site-shell`.
+- `main` is the stable public baseline.
+- Historical construction and post-MVP branches may remain for auditability and development history.
 - Production deployment, DNS, and domain changes require explicit approval.
 
 ## Public repository boundary
 
 This repository is public. It must not contain passwords, API keys, portal credentials, private legal or medical records, internal operating documents, unpublished personal information, confidential Drive links, pricing not approved for publication, or unverified business claims.
 
-Approved public content is sourced from the SyNERDgy Website & Brand Project Hub and its companion messaging materials. Missing facts must be documented in repository planning files rather than invented or exposed as public placeholders.
+Approved public content is sourced from the SyNERDgy Website & Brand Project Hub and its companion messaging, capability, and registration materials. Missing facts must be documented in repository planning files rather than invented or exposed as public placeholders.
+
+## Verified contracting identifiers
+
+The public Capabilities page currently publishes the verified identifiers approved for public use:
+
+- Kentucky Vendor ID: `KS0031871`
+- UEI: `SNVGAWQLG8Q3`
+- CAGE: `232V9`
+- Primary NAICS: `541611`
+
+These identifiers do not, by themselves, imply government award history, certification status, or eligibility for every procurement. Live registration status should be rechecked when material to a procurement submission.
 
 ## Local preview
 
@@ -55,7 +65,6 @@ python3 -m http.server 8000
 ```
 
 Then open `http://localhost:8000` in a browser.
-
 
 ## Validation
 
@@ -78,8 +87,8 @@ python3 scripts/validate_site.py
 
 ## Deployment
 
-Cloudflare Pages is the planned deployment platform. Deployment is deferred until the site passes content, accessibility, mobile, and visual review.
+The site is static-host compatible. A final production host and canonical domain have not yet been approved. Cloudflare Pages or another approved static-site host can be connected after that decision.
 
 ## Current status
 
-Version `1.0.0-mvp` is the frozen five-page baseline. The site includes complete public page content, the responsive visual system, domain-neutral metadata, structured data, site assets, automated validation, and claims controls. Post-MVP editing continues on `edit/v1-post-mvp`. The final domain, remote GitHub publication, and Cloudflare deployment remain separate gates.
+Version `1.0.0-mvp` remains the original five-page baseline. The public repository now includes current contracting identifiers, an approved capability-statement status, domain-neutral metadata, structured data, site assets, automated validation, and claims controls. GitHub contents write access is available. The remaining major publication gates are the final production host, canonical domain, and any intentionally public downloadable assets.
