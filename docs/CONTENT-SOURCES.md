@@ -56,12 +56,12 @@ Every major section should be classified during drafting:
 
 ### Capabilities
 
-- Master Capability, Skills, Assets & Classification Inventory: capabilities, verified July 2026 company facts, work products, delivery model, controls, and claims boundaries
+- Master Capability, Skills, Assets & Classification Inventory plus current approved capability and registration materials: capabilities, company facts, work products, delivery model, controls, and claims boundaries
 - Project Hub: contracting-profile rules and Governance Hive treatment
 - Treatment: adapted
 - Phase Four implementation: contracting and representative work consolidated here
-- Published identifiers: Kentucky Vendor ID KS0031871, UEI SNVGAWQLG8Q3, and primary NAICS 541611
-- Status boundary: do not imply an active SAM/CAGE status or government award history
+- Published identifiers: Kentucky Vendor ID KS0031871, UEI SNVGAWQLG8Q3, CAGE 232V9, and primary NAICS 541611
+- Status boundary: verified identifiers may be published; live SAM registration status should still be rechecked before procurement submissions, and no government award history should be implied
 
 ### About
 
