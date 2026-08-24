@@ -1,5 +1,18 @@
 # Changelog
 
+## Public identity update — August 24, 2026
+
+### Discoverability and entity clarity
+
+- Strengthened the repository README around the full legal name **SyNERDgy Solutions LLC**
+- Added Lexington, Kentucky location context and public capability keywords for clearer search indexing
+- Added alternate searchable brand forms: **SyNERDgy Solutions**, **SyNERDgy**, and **SyNERDgySolutions**
+- Surfaced the primary NAICS and public repository identity near the top of the README
+- Updated the web manifest to identify **SyNERDgy Solutions LLC** and describe the company as a Lexington-based systems and operations consulting firm
+- Preserved the production-domain gate rather than treating the temporary personal-name site as canonical
+- Confirmed the repository currently has no open GitHub Issues
+- Identified GitHub repository sidebar description, website, and topics as remaining repository-settings metadata that must be populated separately from repository files
+
 ## Post-MVP update — August 23, 2026
 
 ### Contracting profile refresh
