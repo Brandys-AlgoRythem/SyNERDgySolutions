@@ -1,8 +1,27 @@
-# SyNERDgy Solutions Website
+# SyNERDgy Solutions LLC | Systems & Operations Consulting
 
-Official public website repository for **SyNERDgy Solutions LLC**.
+Official public website repository for **SyNERDgy Solutions LLC**, a Lexington, Kentucky systems and operations consulting firm. The company name may also appear in search as **SyNERDgy Solutions**, **SyNERDgy**, or **SyNERDgySolutions**.
 
 > Systems fail at the seams. We work at the seams.
+
+## About SyNERDgy Solutions LLC
+
+SyNERDgy Solutions helps organizations reconnect the people, processes, requirements, records, governance, and technology that must work together for operations to remain clear, consistent, and defensible.
+
+Core public capability areas include:
+
+- Governance, risk, and compliance
+- Operations and process improvement
+- Workflow engineering and implementation readiness
+- Evidence and records architecture
+- Research and decision support
+- AI governance and responsible technology
+- Human-centered systems design
+
+**Location:** Lexington, Kentucky, United States  
+**Legal name:** SyNERDgy Solutions LLC  
+**Primary NAICS:** `541611`  
+**Public GitHub repository:** `Brandys-AlgoRythem/SyNERDgySolutions`
 
 ## Project purpose
 
@@ -87,8 +106,8 @@ python3 scripts/validate_site.py
 
 ## Deployment
 
-The site is static-host compatible. A final production host and canonical domain have not yet been approved. Cloudflare Pages or another approved static-site host can be connected after that decision.
+The site is static-host compatible. A final production host and canonical domain have not yet been approved. The existing temporary public site is not treated as the canonical production identity. An approved static-site host or production ChatGPT Site can be connected after that decision.
 
 ## Current status
 
-Version `1.0.0-mvp` remains the original five-page baseline. The public repository now includes current contracting identifiers, an approved capability-statement status, domain-neutral metadata, structured data, site assets, automated validation, and claims controls. GitHub contents write access is available. The remaining major publication gates are the final production host, canonical domain, and any intentionally public downloadable assets.
+Version `1.0.0-mvp` remains the original five-page baseline. The public repository includes current contracting identifiers, an approved capability-statement status, domain-neutral metadata, structured data, site assets, automated validation, claims controls, and an explicit searchable company identity. The remaining major publication gates are the final production host, canonical domain, GitHub repository sidebar metadata, and any intentionally public downloadable assets.
