@@ -3,33 +3,12 @@
 
   document.documentElement.classList.add('js');
 
-  const measurementId = 'G-LQPJNWQB9V';
-  const analyticsEnabled = navigator.doNotTrack !== '1';
+  const analyticsEnabled = typeof window.gtag === 'function';
   const analyticsConfig = {
     trackFlevyOutbound: true,
     trackGeneralOutbound: true,
     trackContactCtas: true
   };
-
-  if (analyticsEnabled) {
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function gtag() {
-      window.dataLayer.push(arguments);
-    };
-
-    window.gtag('js', new Date());
-    window.gtag('config', measurementId, {
-      send_page_view: true,
-      allow_google_signals: false,
-      allow_ad_personalization_signals: false
-    });
-
-    const analyticsScript = document.createElement('script');
-    analyticsScript.async = true;
-    analyticsScript.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
-    analyticsScript.dataset.synerdgyAnalytics = 'ga4';
-    document.head.appendChild(analyticsScript);
-  }
 
   const toggle = document.querySelector('[data-nav-toggle]');
   const navigation = document.querySelector('[data-site-nav]');
