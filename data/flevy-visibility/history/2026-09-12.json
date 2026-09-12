@@ -1,0 +1,70 @@
+{
+  "checked_at": "2026-09-12T14:47:45.786553+00:00",
+  "source": "public_flevy_pages",
+  "limitations": "Public-page monitoring does not expose Flevy-native visitor/pageview counts. It records only public listing/catalog signals available without seller analytics.",
+  "entries": [
+    {
+      "key": "catalog",
+      "type": "catalog",
+      "core_id": null,
+      "title": "SyNERDgy Solutions Flevy Catalog",
+      "registry_status": "published",
+      "destination_url": "https://flevy.com/author/g62804356e75",
+      "ok": true,
+      "status_code": 200,
+      "final_url": "https://flevy.com/author/g62804356e75",
+      "page_title": "SyNERDgy Solutions | R&D Systems Documents (1)",
+      "prices_detected": [
+        "$89.99"
+      ],
+      "document_count": 1,
+      "has_add_to_cart": true,
+      "has_immediate_download": false,
+      "body_mentions_synerdgy": true,
+      "error": null
+    },
+    {
+      "key": "26",
+      "type": "product",
+      "core_id": 26,
+      "title": "AI Output Quality Assurance & Validation Procedure",
+      "registry_status": "published",
+      "destination_url": "https://flevy.com/browse/marketplace/ai-output-quality-assurance-and-validation-procedure-13572",
+      "ok": true,
+      "status_code": 200,
+      "final_url": "https://flevy.com/browse/marketplace/ai-output-quality-assurance-and-validation-procedure-13572",
+      "page_title": "AI Output Quality Assurance & Validation Procedure Word Template",
+      "prices_detected": [
+        "$89.99",
+        "$6,625",
+        "$4,725",
+        "$4,500",
+        "$4,285",
+        "$4,085",
+        "$3,550",
+        "$3,515",
+        "$3,270",
+        "$1,650"
+      ],
+      "document_count": null,
+      "has_add_to_cart": true,
+      "has_immediate_download": true,
+      "body_mentions_synerdgy": true,
+      "error": null
+    }
+  ],
+  "changes": [
+    {
+      "key": "catalog",
+      "changed_fields": [
+        "new_snapshot"
+      ]
+    },
+    {
+      "key": "26",
+      "changed_fields": [
+        "new_snapshot"
+      ]
+    }
+  ]
+}
