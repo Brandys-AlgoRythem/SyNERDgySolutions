@@ -13,7 +13,7 @@ permissions:
 
 concurrency:
   group: github-pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   deploy:
@@ -37,11 +37,26 @@ jobs:
       - name: Validate configured site
         run: python3 scripts/validate_site.py
 
+      - name: Build tracked Flevy routes
+        run: python3 scripts/flevy_automation.py build
+
+      - name: Verify Flevy route manifest
+        run: |
+          test -f go/links.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path('go/links.json').read_text())
+          if not data.get('links'):
+              raise SystemExit('No active Flevy tracking routes were generated')
+          print(f"Generated {len(data['links'])} tracked Flevy routes")
+          PY
+
       - name: Stage public files
         run: |
           mkdir _site
           cp index.html 404.html site.webmanifest robots.txt sitemap.xml _site/
-          cp -R about assets capabilities contact services _site/
+          cp -R about assets capabilities contact services go _site/
           touch _site/.nojekyll
 
       - name: Configure GitHub Pages
