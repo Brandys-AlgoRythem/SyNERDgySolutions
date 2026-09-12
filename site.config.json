@@ -3,6 +3,15 @@
   "shortName": "SyNERDgy",
   "siteUrl": null,
   "defaultSocialImage": "/assets/images/social-preview.png",
+  "analytics": {
+    "provider": "ga4",
+    "enabled": false,
+    "ga4MeasurementId": null,
+    "respectDoNotTrack": true,
+    "trackFlevyOutbound": true,
+    "trackGeneralOutbound": true,
+    "trackContactCtas": true
+  },
   "routes": [
     {"path": "/", "file": "index.html", "indexable": true},
     {"path": "/services/", "file": "services/index.html", "indexable": true},
