@@ -15,16 +15,16 @@ The core questions are:
 
 ## Current state
 
-Analytics support is present in the shared site script but disabled by default.
+GA4 analytics are activated in `site.config.json` using the SyNERDgy web data stream measurement ID `G-LQPJNWQB9V`.
 
-No Google Analytics script loads unless both of these conditions are true in `site.config.json`:
+The shared site script loads Google Analytics only when both of these conditions are true:
 
 ```json
 "enabled": true,
-"ga4MeasurementId": "G-XXXXXXXXXX"
+"ga4MeasurementId": "G-LQPJNWQB9V"
 ```
 
-The repository should remain disabled until a real GA4 web data stream exists and the privacy disclosure/consent approach for the production site has been approved.
+The public footer disclosure is updated at runtime by the shared script to state that privacy-conscious analytics are in use. Google Signals and ad-personalization signals remain disabled, and browser Do Not Track is respected when `respectDoNotTrack` is enabled.
 
 ## Event model
 
@@ -86,25 +86,20 @@ Parameters:
 
 The GA4 loader is configured to:
 
-- remain fully disabled until explicitly activated
+- load only when analytics are explicitly enabled with a valid measurement ID
 - disable Google Signals
 - disable ad-personalization signals
 - respect browser Do Not Track when `respectDoNotTrack` is enabled in `site.config.json`
+- disclose analytics use in the public site footer at runtime
 
-A privacy notice should be published before production analytics activation. If the site later targets or materially serves jurisdictions that require prior consent for analytics storage, add an appropriate consent mechanism before enabling GA4 there.
+If the site later targets or materially serves jurisdictions that require prior consent for analytics storage, add an appropriate consent mechanism before relying on analytics there.
 
-## Activation sequence
+## Activation verification
 
-1. Create the SyNERDgy GA4 property and web data stream for the actual public website origin.
-2. Copy the GA4 Measurement ID in `G-...` format.
-3. Publish the site privacy disclosure and make any required consent decision.
-4. Update `site.config.json`:
-   - set `analytics.enabled` to `true`
-   - set `analytics.ga4MeasurementId` to the real Measurement ID
-5. Deploy the site.
-6. Visit the site and confirm the page view in GA4 Realtime.
-7. Click one contact CTA and one test Flevy link, then confirm the custom events arrive.
-8. Mark the useful custom events as key events in GA4 if desired.
+1. Deploy the current `main` branch after the GA4 activation change is merged.
+2. Visit the live site and confirm the page view in GA4 Realtime.
+3. Click one contact CTA and one test Flevy link, then confirm the custom events arrive.
+4. Mark the useful custom events as key events in GA4 if desired.
 
 ## Two-week Flevy test readout
 

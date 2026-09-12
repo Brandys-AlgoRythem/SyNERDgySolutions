@@ -4,6 +4,11 @@
   // Enable enhanced navigation only after this file loads successfully.
   document.documentElement.classList.add('js');
 
+  const activeScript = document.currentScript;
+  const siteConfigUrl = activeScript?.src
+    ? new URL('../../site.config.json', activeScript.src)
+    : new URL('/site.config.json', window.location.origin);
+
   const toggle = document.querySelector('[data-nav-toggle]');
   const navigation = document.querySelector('[data-site-nav]');
 
@@ -52,6 +57,11 @@
     element.textContent = year;
   });
 
+  const analyticsDisclosure = document.querySelector('.site-footer__contact p');
+  if (analyticsDisclosure) {
+    analyticsDisclosure.textContent = 'This site uses privacy-conscious analytics to understand visits and outbound clicks. Google Signals and ad-personalization signals are disabled, browser Do Not Track is respected, and no contact-form processor is used.';
+  }
+
   const safeText = (value) => String(value || '').trim().replace(/\s+/g, ' ').slice(0, 120);
 
   const sendAnalyticsEvent = (eventName, parameters = {}) => {
@@ -87,7 +97,7 @@
       }
 
       if (url.origin === window.location.origin) {
-        if (analyticsConfig.trackContactCtas && url.pathname.startsWith('/contact')) {
+        if (analyticsConfig.trackContactCtas && /(^|\/)contact\/?$/.test(url.pathname)) {
           sendAnalyticsEvent('contact_cta_click', {
             link_url: url.href,
             link_text: linkText,
@@ -124,7 +134,7 @@
   const initializeAnalytics = async () => {
     let config;
     try {
-      const response = await fetch('/site.config.json', { cache: 'no-store' });
+      const response = await fetch(siteConfigUrl, { cache: 'no-store' });
       if (!response.ok) return;
       config = await response.json();
     } catch {
