@@ -1,12 +1,20 @@
-# SyNERDgy Solutions Website
+# SyNERDgy Solutions LLC
 
-Official public website repository for **SyNERDgy Solutions LLC**.
+Official public website repository for **SyNERDgy Solutions LLC**, a Lexington, Kentucky applied R&D and operational intelligence firm focused on root-cause analysis, governance, compliance, systems analysis, and implementation.
 
-> Order isn’t accidental. It’s engineered.
+> Systems fail at the seams. We work at the seams.
+
+## Public links
+
+- Website: https://brandys-algorythem.github.io/SyNERDgySolutions/
+- LinkedIn: https://www.linkedin.com/company/synerdgy-solutions-llc/
+- GitHub: https://github.com/Brandys-AlgoRythem/SyNERDgySolutions
 
 ## Project purpose
 
-This repository contains the minimum viable public consulting website for SyNERDgy Solutions. The site explains the company’s services, capabilities, operating philosophy, and contact path in a clear, accessible, buyer-facing format.
+This repository contains SyNERDgy Solutions LLC's public website and search-identity configuration. The site explains the company’s services, capabilities, operating philosophy, applied research and operational-intelligence focus, and contact path in a clear, accessible, buyer-facing format.
+
+The repository also maintains the public entity signals used to help search engines connect the website, company identity, public profiles, location, expertise, canonical URLs, and social metadata to the same organization.
 
 ## MVP scope
 
@@ -31,12 +39,25 @@ The MVP is intentionally simple and durable:
 - No required package manager
 - No backend
 - No cookies or analytics
-- Static deployment through Cloudflare Pages
+- Project-path-safe static deployment through GitHub Pages or Cloudflare Pages
+- Build-time canonical and social URL generation
+- Organization and WebSite structured data
+- Search-engine indexing directives and sitemap generation
+- Cross-profile identity signals through structured-data `sameAs` and HTML `rel="me"`
+
+## Public identity configuration
+
+`site.config.json` is the source of truth for public search identity. It contains the legal company name, homepage search title and description, verified identity profiles, search topics, areas of expertise, social-image path, and indexable routes.
+
+When another verified public company profile is established, add its canonical URL to `identityProfiles`. The build then publishes that relationship into the site metadata and Organization schema without requiring the same link to be edited manually across every page.
+
+Only verified SyNERDgy-controlled or authoritative profiles should be added. Do not add guessed directory URLs or unrelated mentions merely because they rank in search.
 
 ## Repository workflow
 
-- `main` preserves the frozen `1.0.0-mvp` baseline.
+- `main` preserves the frozen MVP baseline.
 - Post-MVP refinements occur on `edit/v1-post-mvp`.
+- Visual recovery and current public deployment work occurs on `repair/github-pages-visual-recovery`.
 - The completed construction history remains on `build/v1-site-shell`.
 - Production deployment, DNS, and domain changes require explicit approval.
 
@@ -54,8 +75,7 @@ Run a simple local server from the repository root:
 python3 -m http.server 8000
 ```
 
-Then open `http://localhost:8000` in a browser.
-
+Then open `http://localhost:8000` in a browser. To reproduce GitHub Pages project-path behavior, serve the repository as a subdirectory and open a URL such as `http://localhost:8000/SyNERDgySolutions/`.
 
 ## Validation
 
@@ -67,19 +87,23 @@ python3 scripts/validate_site.py
 
 The command uses only the Python standard library and is also executed by the GitHub Actions workflow.
 
-## Production URL configuration
+## Public URL configuration
 
-The repository deliberately contains no invented canonical domain. After the real production origin is approved, generate canonical URLs, social-image URLs, `robots.txt`, and the sitemap with:
+The same source can be published at the current GitHub Pages project path or a future custom domain. Generate canonical URLs, social-image URLs, robots directives, Organization/WebSite IDs, and the sitemap with either base URL:
 
 ```bash
+python3 scripts/configure_site_url.py https://brandys-algorythem.github.io/SyNERDgySolutions
+# later, if a custom domain is adopted:
 python3 scripts/configure_site_url.py https://approved-domain.example
 python3 scripts/validate_site.py
 ```
 
+A domain migration therefore changes the canonical base URL without changing the underlying company identity graph.
+
 ## Deployment
 
-Cloudflare Pages is the planned deployment platform. Deployment is deferred until the site passes content, accessibility, mobile, and visual review.
+The source uses document-relative browser paths so the same build works at a domain root and beneath the GitHub Pages project path `/SyNERDgySolutions/`. `.github/workflows/deploy-pages.yml` publishes the repair branch through the isolated `github-pages-repair` environment and injects the current GitHub Pages base URL before validation and deployment. The workflow does not merge into or update `main`.
 
 ## Current status
 
-Version `1.0.0-mvp` is the frozen five-page baseline. The site includes complete public page content, the responsive visual system, domain-neutral metadata, structured data, site assets, automated validation, and claims controls. Post-MVP editing continues on `edit/v1-post-mvp`. The final domain, remote GitHub publication, and Cloudflare deployment remain separate gates.
+The active repair branch is the current GitHub Pages deployment source. It preserves the five-page structure and dark hive-and-circuit presentation while carrying deploy-time canonical URLs, social metadata, search indexing directives, structured organization identity, verified cross-profile links, robots configuration, and sitemap generation for public discovery. The frozen `main` baseline remains unchanged.

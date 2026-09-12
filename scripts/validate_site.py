@@ -32,6 +32,7 @@ class PageData:
     ids: set[str] = field(default_factory=set)
     links: list[str] = field(default_factory=list)
     scripts: list[str] = field(default_factory=list)
+    assets: list[str] = field(default_factory=list)
     meta_name: dict[str, str] = field(default_factory=dict)
     meta_property: dict[str, str] = field(default_factory=dict)
     link_rels: list[tuple[set[str], str, dict[str, str]]] = field(default_factory=list)
@@ -88,6 +89,10 @@ class StaticHTMLParser(HTMLParser):
             if attrs.get("type") == "application/ld+json":
                 self._jsonld_active = True
                 self._jsonld_parts = []
+        elif tag in {"img", "source", "video", "audio", "iframe"}:
+            src = attrs.get("src", "")
+            if src:
+                self.data.assets.append(src)
 
         element_id = attrs.get("id")
         if element_id:
@@ -119,6 +124,11 @@ def route_to_file(route_path: str) -> Path:
     if route_path.endswith("/"):
         return ROOT / route_path.lstrip("/") / "index.html"
     return ROOT / route_path.lstrip("/")
+
+
+def is_root_relative_reference(value: str) -> bool:
+    parsed = urlparse(value)
+    return not parsed.scheme and not value.startswith("//") and parsed.path.startswith("/")
 
 
 def resolve_internal(source: Path, href: str) -> tuple[Path | None, str | None]:
@@ -186,9 +196,9 @@ def validate() -> list[str]:
     titles: dict[str, Path] = {}
     descriptions: dict[str, Path] = {}
     required_links = {
-        "manifest": "/site.webmanifest",
-        "apple-touch-icon": "/assets/images/apple-touch-icon.png",
-        "icon-svg": "/assets/images/favicon.svg",
+        "manifest": ROOT / "site.webmanifest",
+        "apple-touch-icon": ROOT / "assets/images/apple-touch-icon.png",
+        "icon-svg": ROOT / "assets/images/favicon.svg",
     }
 
     for path, page in pages.items():
@@ -235,13 +245,32 @@ def validate() -> list[str]:
         for rels, href, attrs in page.link_rels:
             for relation in rels:
                 rel_map.setdefault(relation, []).append((href, attrs))
-        if required_links["manifest"] not in [item[0] for item in rel_map.get("manifest", [])]:
+        def relation_targets(relation: str, expected: Path) -> bool:
+            for href, _attrs in rel_map.get(relation, []):
+                target, _fragment = resolve_internal(path, href)
+                if target is not None and target.resolve() == expected.resolve():
+                    return True
+            return False
+
+        if not relation_targets("manifest", required_links["manifest"]):
             fail(errors, f"{rel}: missing site manifest hook")
-        if required_links["apple-touch-icon"] not in [item[0] for item in rel_map.get("apple-touch-icon", [])]:
+        if not relation_targets("apple-touch-icon", required_links["apple-touch-icon"]):
             fail(errors, f"{rel}: missing apple-touch-icon hook")
-        icon_hrefs = [item[0] for item in rel_map.get("icon", [])]
-        if required_links["icon-svg"] not in icon_hrefs:
+        if not relation_targets("icon", required_links["icon-svg"]):
             fail(errors, f"{rel}: missing SVG favicon hook")
+
+        browser_references = (
+            page.links
+            + page.scripts
+            + page.assets
+            + [href for _rels, href, _attrs in page.link_rels if href]
+        )
+        for reference in browser_references:
+            if is_root_relative_reference(reference):
+                fail(
+                    errors,
+                    f"{rel}: root-relative browser reference {reference} will bypass a GitHub Pages project path",
+                )
 
         raw = path.read_text(encoding="utf-8")
         if URL_MARKER not in raw:
@@ -256,7 +285,13 @@ def validate() -> list[str]:
     # Internal link and anchor validation.
     for path, page in pages.items():
         rel = path.relative_to(ROOT.resolve())
-        for href in page.links + page.scripts:
+        references = (
+            page.links
+            + page.scripts
+            + page.assets
+            + [href for _rels, href, _attrs in page.link_rels if href]
+        )
+        for href in references:
             target, fragment = resolve_internal(path, href)
             if target is None:
                 continue
@@ -309,12 +344,16 @@ def validate() -> list[str]:
     for key in ("name", "short_name", "description", "start_url", "scope", "display", "background_color", "theme_color", "icons"):
         if not manifest.get(key):
             fail(errors, f"site.webmanifest: missing {key}")
+    if manifest.get("start_url") != "./":
+        fail(errors, "site.webmanifest: start_url must be project-path-safe (./)")
+    if manifest.get("scope") != "./":
+        fail(errors, "site.webmanifest: scope must be project-path-safe (./)")
     expected_icons = {
-        "/assets/images/icon-192.png": (192, 192),
-        "/assets/images/icon-512.png": (512, 512),
+        "assets/images/icon-192.png": (192, 192),
+        "assets/images/icon-512.png": (512, 512),
     }
     for src, dims in expected_icons.items():
-        path = ROOT / src.lstrip("/")
+        path = ROOT / src
         if not path.exists():
             fail(errors, f"Missing manifest icon: {src}")
             continue
@@ -342,9 +381,13 @@ def validate() -> list[str]:
     except (OSError, ET.ParseError) as exc:
         fail(errors, f"sitemap.xml: invalid or missing: {exc}")
         sitemap_root = None
-    if "User-agent: *" not in robots_text or "Allow: /" not in robots_text:
+    if "User-agent: *" not in robots_text:
         fail(errors, "robots.txt: must allow public crawling")
     if site_url:
+        base_path = urlparse(site_url).path.rstrip("/")
+        expected_allow = f"{base_path}/" if base_path else "/"
+        if f"Allow: {expected_allow}" not in robots_text:
+            fail(errors, "robots.txt: allow path does not match the configured site base URL")
         if f"Sitemap: {site_url}/sitemap.xml" not in robots_text:
             fail(errors, "robots.txt: configured sitemap URL does not match site.config.json")
         expected_urls = {
@@ -366,6 +409,8 @@ def validate() -> list[str]:
             if not page.meta_property.get("og:url") or not page.meta_property.get("og:image"):
                 fail(errors, f"{rel}: configured site requires og:url and og:image")
     else:
+        if "Allow: /" not in robots_text:
+            fail(errors, "robots.txt: must allow public crawling")
         if re.search(r"^Sitemap:\s*https?://", robots_text, flags=re.M):
             fail(errors, "robots.txt: must not invent a sitemap origin before domain approval")
         if sitemap_root is not None:
@@ -401,6 +446,10 @@ def validate() -> list[str]:
             for pattern in local_path_patterns:
                 if pattern.search(text):
                     fail(errors, f"{rel}: public file contains a local filesystem path")
+            if path.suffix.lower() == ".css" and re.search(
+                r"url\(\s*['\"]?/(?!/)", text, flags=re.I
+            ):
+                fail(errors, f"{rel}: CSS contains a root-relative url() that is unsafe on project Pages")
 
     return errors
 

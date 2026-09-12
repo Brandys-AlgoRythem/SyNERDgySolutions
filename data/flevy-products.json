@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "ga4_measurement_id": "G-LQPJNWQB9V",
+  "public_base_url": "https://brandys-algorythem.github.io/SyNERDgySolutions",
+  "flevy_author_url": "https://flevy.com/author/g62804356e75",
+  "sources": ["linkedin", "email", "direct", "qr"],
+  "destinations": [
+    {
+      "key": "catalog",
+      "type": "catalog",
+      "core_id": null,
+      "title": "SyNERDgy Solutions Flevy Catalog",
+      "status": "published",
+      "destination_url": "https://flevy.com/author/g62804356e75"
+    },
+    {
+      "key": "26",
+      "type": "product",
+      "core_id": 26,
+      "title": "AI Output Quality Assurance & Validation Procedure",
+      "status": "published",
+      "destination_url": "https://flevy.com/browse/marketplace/ai-output-quality-assurance-and-validation-procedure-13572"
+    },
+    {
+      "key": "30",
+      "type": "product",
+      "core_id": 30,
+      "title": "Human-in-the-Loop AI Control & Oversight Plan",
+      "status": "url_pending_verification",
+      "destination_url": null
+    },
+    {
+      "key": "22",
+      "type": "product",
+      "core_id": 22,
+      "title": "AI Agent Role, Authority & Permissions Specification",
+      "status": "url_pending_verification",
+      "destination_url": null
+    },
+    {
+      "key": "21",
+      "type": "product",
+      "core_id": 21,
+      "title": "AI Workflow Design & Control Document",
+      "status": "url_pending_verification",
+      "destination_url": null
+    },
+    {
+      "key": "23",
+      "type": "product",
+      "core_id": 23,
+      "title": "Data Flow Documentation & Control Guide",
+      "status": "url_pending_verification",
+      "destination_url": null
+    },
+    {
+      "key": "25",
+      "type": "product",
+      "core_id": 25,
+      "title": "Software Testing & Acceptance Protocol",
+      "status": "url_pending_verification",
+      "destination_url": null
+    },
+    {
+      "key": "24",
+      "type": "product",
+      "core_id": 24,
+      "title": "System Integration Requirements & Control Specification",
+      "status": "url_pending_verification",
+      "destination_url": null
+    },
+    {
+      "key": "28",
+      "type": "product",
+      "core_id": 28,
+      "title": "Monitoring & Observability Plan",
+      "status": "planned",
+      "destination_url": null
+    },
+    {
+      "key": "27",
+      "type": "product",
+      "core_id": 27,
+      "title": "Error Handling & Recovery Specification",
+      "status": "planned",
+      "destination_url": null
+    },
+    {
+      "key": "20",
+      "type": "product",
+      "core_id": 20,
+      "title": "System Architecture Overview",
+      "status": "planned",
+      "destination_url": null
+    },
+    {
+      "key": "29",
+      "type": "product",
+      "core_id": 29,
+      "title": "Core 50 Product #29",
+      "status": "planned",
+      "destination_url": null
+    }
+  ]
+}

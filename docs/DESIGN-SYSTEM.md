@@ -119,8 +119,8 @@ Allowed:
 Avoid:
 
 - Repeating honeycomb wallpaper behind text
-- Literal honey drips
-- Cartoon bees
+- Uncontrolled honey-drip decoration; the single signature hero drop is the approved exception
+- Cartoon or stock bees; the controlled stylized-realist hero assets are the approved exception
 - Turning every container into a hexagon, because rectangles remain innocent
 - Repeating seam language in every paragraph
 
