@@ -1,0 +1,38 @@
+name: Install exact Google tag
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/install-google-tag.yml
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+        with:
+          ref: main
+
+      - name: Install exact Google tag
+        run: python3 scripts/install_google_tag.py
+
+      - name: Validate site
+        run: python3 scripts/validate_site.py
+
+      - name: Commit installed tag
+        run: |
+          if git diff --quiet; then
+            echo "No changes needed."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html services/index.html capabilities/index.html about/index.html contact/index.html 404.html assets/js/main.js
+          git commit -m "Install exact Google Analytics tag"
+          git push origin HEAD:main
