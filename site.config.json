@@ -5,8 +5,8 @@
   "defaultSocialImage": "/assets/images/social-preview.png",
   "analytics": {
     "provider": "ga4",
-    "enabled": false,
-    "ga4MeasurementId": null,
+    "enabled": true,
+    "ga4MeasurementId": "G-LQPJNWQB9V",
     "respectDoNotTrack": true,
     "trackFlevyOutbound": true,
     "trackGeneralOutbound": true,
