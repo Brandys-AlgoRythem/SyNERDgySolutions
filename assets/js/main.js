@@ -51,4 +51,114 @@
   document.querySelectorAll('[data-current-year]').forEach((element) => {
     element.textContent = year;
   });
+
+  const safeText = (value) => String(value || '').trim().replace(/\s+/g, ' ').slice(0, 120);
+
+  const sendAnalyticsEvent = (eventName, parameters = {}) => {
+    if (typeof window.gtag !== 'function') return;
+    window.gtag('event', eventName, parameters);
+  };
+
+  const installClickTracking = (analyticsConfig) => {
+    document.addEventListener('click', (event) => {
+      const link = event.target.closest('a[href]');
+      if (!link) return;
+
+      const href = link.getAttribute('href') || '';
+      const linkText = safeText(link.textContent || link.getAttribute('aria-label'));
+      const sourcePage = window.location.pathname;
+
+      if (href.startsWith('mailto:')) {
+        if (analyticsConfig.trackContactCtas) {
+          sendAnalyticsEvent('contact_email_click', {
+            link_url: href,
+            link_text: linkText,
+            source_page: sourcePage
+          });
+        }
+        return;
+      }
+
+      let url;
+      try {
+        url = new URL(href, window.location.href);
+      } catch {
+        return;
+      }
+
+      if (url.origin === window.location.origin) {
+        if (analyticsConfig.trackContactCtas && url.pathname.startsWith('/contact')) {
+          sendAnalyticsEvent('contact_cta_click', {
+            link_url: url.href,
+            link_text: linkText,
+            source_page: sourcePage
+          });
+        }
+        return;
+      }
+
+      const hostname = url.hostname.toLowerCase();
+      const isFlevy = hostname === 'flevy.com' || hostname.endsWith('.flevy.com');
+
+      if (isFlevy && analyticsConfig.trackFlevyOutbound) {
+        sendAnalyticsEvent('flevy_outbound_click', {
+          link_url: url.href,
+          link_text: linkText,
+          source_page: sourcePage,
+          product_id: safeText(link.dataset.productId)
+        });
+        return;
+      }
+
+      if (analyticsConfig.trackGeneralOutbound) {
+        sendAnalyticsEvent('outbound_click', {
+          link_url: url.href,
+          link_domain: hostname,
+          link_text: linkText,
+          source_page: sourcePage
+        });
+      }
+    }, { capture: true });
+  };
+
+  const initializeAnalytics = async () => {
+    let config;
+    try {
+      const response = await fetch('/site.config.json', { cache: 'no-store' });
+      if (!response.ok) return;
+      config = await response.json();
+    } catch {
+      return;
+    }
+
+    const analyticsConfig = config.analytics || {};
+    if (!analyticsConfig.enabled) return;
+
+    if (analyticsConfig.respectDoNotTrack && navigator.doNotTrack === '1') return;
+
+    const measurementId = String(analyticsConfig.ga4MeasurementId || '').trim();
+    if (!/^G-[A-Z0-9]{4,}$/.test(measurementId)) return;
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function gtag() {
+      window.dataLayer.push(arguments);
+    };
+
+    window.gtag('js', new Date());
+    window.gtag('config', measurementId, {
+      send_page_view: true,
+      allow_google_signals: false,
+      allow_ad_personalization_signals: false
+    });
+
+    const analyticsScript = document.createElement('script');
+    analyticsScript.async = true;
+    analyticsScript.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
+    analyticsScript.dataset.synerdgyAnalytics = 'ga4';
+    document.head.appendChild(analyticsScript);
+
+    installClickTracking(analyticsConfig);
+  };
+
+  initializeAnalytics();
 })();
