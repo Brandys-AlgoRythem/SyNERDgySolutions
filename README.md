@@ -49,14 +49,20 @@ The MVP is intentionally simple and durable:
 - No frontend framework
 - No required package manager
 - No backend
-- No cookies or analytics
 - Static-host compatible
+- Optional GA4 analytics support, disabled by default until a measurement ID and privacy approach are approved
+
+## Analytics and funnel measurement
+
+The shared site script includes an optional GA4 layer designed to measure the buyer funnel without scattering tracking code across individual pages. When explicitly enabled in `site.config.json`, it can record page views, contact CTA clicks, email clicks, general outbound clicks, and dedicated Flevy outbound-click events. Flevy links are detected automatically by hostname, and a future product link can include `data-product-id` for cleaner product-level reporting.
+
+Analytics remain disabled while `analytics.enabled` is `false` or `analytics.ga4MeasurementId` is empty. The implementation also disables Google Signals and ad-personalization signals and can respect browser Do Not Track. See `docs/ANALYTICS.md` for the activation and event-measurement plan.
 
 ## Repository workflow
 
 - `main` is the stable public baseline.
 - Historical construction and post-MVP branches may remain for auditability and development history.
-- Production deployment, DNS, and domain changes require explicit approval.
+- Production deployment, DNS, domain changes, and analytics activation require explicit approval.
 
 ## Public repository boundary
 
@@ -110,4 +116,4 @@ The site is static-host compatible. A final production host and canonical domain
 
 ## Current status
 
-Version `1.0.0-mvp` remains the original five-page baseline. The public repository includes current contracting identifiers, an approved capability-statement status, domain-neutral metadata, structured data, site assets, automated validation, claims controls, and an explicit searchable company identity. The remaining major publication gates are the final production host, canonical domain, GitHub repository sidebar metadata, and any intentionally public downloadable assets.
+Version `1.0.0-mvp` remains the original five-page baseline. The public repository includes current contracting identifiers, an approved capability-statement status, domain-neutral metadata, structured data, site assets, automated validation, claims controls, an explicit searchable company identity, and disabled-by-default funnel analytics support. The remaining major publication gates are the final production host, canonical domain, GitHub repository sidebar metadata, any intentionally public downloadable assets, and analytics activation after the GA4 stream and privacy disclosure are ready.
