@@ -1,13 +1,35 @@
 (() => {
   'use strict';
 
-  // Enable enhanced navigation only after this file loads successfully.
   document.documentElement.classList.add('js');
 
-  const activeScript = document.currentScript;
-  const siteConfigUrl = activeScript?.src
-    ? new URL('../../site.config.json', activeScript.src)
-    : new URL('/site.config.json', window.location.origin);
+  const measurementId = 'G-LQPJNWQB9V';
+  const analyticsEnabled = navigator.doNotTrack !== '1';
+  const analyticsConfig = {
+    trackFlevyOutbound: true,
+    trackGeneralOutbound: true,
+    trackContactCtas: true
+  };
+
+  if (analyticsEnabled) {
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function gtag() {
+      window.dataLayer.push(arguments);
+    };
+
+    window.gtag('js', new Date());
+    window.gtag('config', measurementId, {
+      send_page_view: true,
+      allow_google_signals: false,
+      allow_ad_personalization_signals: false
+    });
+
+    const analyticsScript = document.createElement('script');
+    analyticsScript.async = true;
+    analyticsScript.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+    analyticsScript.dataset.synerdgyAnalytics = 'ga4';
+    document.head.appendChild(analyticsScript);
+  }
 
   const toggle = document.querySelector('[data-nav-toggle]');
   const navigation = document.querySelector('[data-site-nav]');
@@ -65,11 +87,11 @@
   const safeText = (value) => String(value || '').trim().replace(/\s+/g, ' ').slice(0, 120);
 
   const sendAnalyticsEvent = (eventName, parameters = {}) => {
-    if (typeof window.gtag !== 'function') return;
+    if (!analyticsEnabled || typeof window.gtag !== 'function') return;
     window.gtag('event', eventName, parameters);
   };
 
-  const installClickTracking = (analyticsConfig) => {
+  if (analyticsEnabled) {
     document.addEventListener('click', (event) => {
       const link = event.target.closest('a[href]');
       if (!link) return;
@@ -129,46 +151,5 @@
         });
       }
     }, { capture: true });
-  };
-
-  const initializeAnalytics = async () => {
-    let config;
-    try {
-      const response = await fetch(siteConfigUrl, { cache: 'no-store' });
-      if (!response.ok) return;
-      config = await response.json();
-    } catch {
-      return;
-    }
-
-    const analyticsConfig = config.analytics || {};
-    if (!analyticsConfig.enabled) return;
-
-    if (analyticsConfig.respectDoNotTrack && navigator.doNotTrack === '1') return;
-
-    const measurementId = String(analyticsConfig.ga4MeasurementId || '').trim();
-    if (!/^G-[A-Z0-9]{4,}$/.test(measurementId)) return;
-
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function gtag() {
-      window.dataLayer.push(arguments);
-    };
-
-    window.gtag('js', new Date());
-    window.gtag('config', measurementId, {
-      send_page_view: true,
-      allow_google_signals: false,
-      allow_ad_personalization_signals: false
-    });
-
-    const analyticsScript = document.createElement('script');
-    analyticsScript.async = true;
-    analyticsScript.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
-    analyticsScript.dataset.synerdgyAnalytics = 'ga4';
-    document.head.appendChild(analyticsScript);
-
-    installClickTracking(analyticsConfig);
-  };
-
-  initializeAnalytics();
+  }
 })();
