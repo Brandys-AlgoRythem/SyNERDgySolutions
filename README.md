@@ -25,23 +25,36 @@ Core public capability areas include:
 
 ## Project purpose
 
-This repository contains the minimum viable public consulting website for SyNERDgy Solutions. The site explains the company’s services, capabilities, operating philosophy, contracting profile, and contact path in a clear, accessible, buyer-facing format.
+This repository contains the public consulting website for SyNERDgy Solutions. The site explains the company’s services, capabilities, operating philosophy, contracting profile, direct-buy digital resources, and contact path in a clear, accessible, buyer-facing format.
 
-## MVP scope
+## Public site scope
 
-The launch website contains five public pages:
+The original `1.0.0-mvp` launch baseline contained five public pages. The site now contains six public pages:
 
 1. Home
 2. Services
 3. Capabilities
-4. About
-5. Contact
+4. Resources
+5. About
+6. Contact
 
-Contracting information is incorporated into the Capabilities page. Representative work and future resources are also introduced there until a dedicated Resources page is justified.
+Contracting information is incorporated into the Capabilities page. The dedicated Resources page contains the currently approved fixed-price digital resources and secure Stripe purchase links. Scoped consulting remains inquiry-first rather than direct-buy.
+
+## Digital resources
+
+The Resources page currently publishes five fixed-price digital products:
+
+- **#21 AI Workflow Design & Control Document** — $279
+- **#22 Automated Agent Role Specification** — $299
+- **#23 Data Flow Documentation & Control Guide** — $299
+- **#26 Quality Assurance Procedure for AI Outputs** — $149
+- **#30 Human-in-the-Loop AI Control & Oversight Plan** — $349
+
+These are one-time purchases. Product checkout is handled through Stripe-hosted Payment Links. The public website does not represent these resources as subscriptions or as organization-specific consulting engagements.
 
 ## Technical approach
 
-The MVP is intentionally simple and durable:
+The site is intentionally simple and durable:
 
 - Semantic HTML5
 - Modern CSS
@@ -54,9 +67,9 @@ The MVP is intentionally simple and durable:
 
 ## Analytics and funnel measurement
 
-The shared site script uses GA4 to measure the buyer funnel without scattering tracking code across individual pages. The current SyNERDgy web data stream uses measurement ID `G-LQPJNWQB9V` and records page views, contact CTA clicks, email clicks, general outbound clicks, and dedicated Flevy outbound-click events. Flevy links are detected automatically by hostname, and a future product link can include `data-product-id` for cleaner product-level reporting.
+The shared site script uses GA4 to measure the buyer funnel without scattering tracking code across individual pages. The current SyNERDgy web data stream uses measurement ID `G-LQPJNWQB9V` and records page views, contact CTA clicks, email clicks, general outbound clicks, dedicated Flevy outbound-click events, and dedicated Stripe outbound-click events. Product links can include `data-product-id` so product-level outbound interest is visible in analytics.
 
-Google Signals and ad-personalization signals are disabled, browser Do Not Track can be respected, and the public footer disclosure is updated by the shared script when the site loads. See `docs/ANALYTICS.md` for the event model and two-week Flevy measurement plan.
+Google Signals and ad-personalization signals are disabled, browser Do Not Track can be respected, and the public footer disclosure is updated by the shared script when the site loads. See `docs/ANALYTICS.md` for the broader event model and measurement approach.
 
 ## Repository workflow
 
@@ -68,7 +81,7 @@ Google Signals and ad-personalization signals are disabled, browser Do Not Track
 
 This repository is public. It must not contain passwords, API keys, portal credentials, private legal or medical records, internal operating documents, unpublished personal information, confidential Drive links, pricing not approved for publication, or unverified business claims.
 
-Approved public content is sourced from the SyNERDgy Website & Brand Project Hub and its companion messaging, capability, and registration materials. Missing facts must be documented in repository planning files rather than invented or exposed as public placeholders.
+Approved public content is sourced from the SyNERDgy Website & Brand Project Hub and its companion messaging, capability, registration, commercialization, and approved product materials. Missing facts must be documented in repository planning files rather than invented or exposed as public placeholders.
 
 ## Verified contracting identifiers
 
@@ -116,4 +129,4 @@ The site is static-host compatible. A final production host and canonical domain
 
 ## Current status
 
-Version `1.0.0-mvp` remains the original five-page baseline. The public repository includes current contracting identifiers, an approved capability-statement status, domain-neutral metadata, structured data, site assets, automated validation, claims controls, an explicit searchable company identity, and active funnel analytics. The remaining major publication gates are the final production host, canonical domain, GitHub repository sidebar metadata, and any intentionally public downloadable assets.
+Version `1.0.0-mvp` remains the historical five-page launch baseline. The public repository now includes a dedicated Resources route with five approved fixed-price digital products and Stripe-hosted purchase links, alongside current contracting identifiers, an approved capability-statement status, domain-neutral metadata, structured data, site assets, automated validation, claims controls, an explicit searchable company identity, and active funnel analytics. The remaining major publication gates are the final production host, canonical domain, GitHub repository sidebar metadata, and any intentionally public downloadable assets.
