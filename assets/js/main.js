@@ -6,6 +6,7 @@
   const analyticsEnabled = typeof window.gtag === 'function';
   const analyticsConfig = {
     trackFlevyOutbound: true,
+    trackStripeOutbound: true,
     trackGeneralOutbound: true,
     trackContactCtas: true
   };
@@ -110,9 +111,20 @@
 
       const hostname = url.hostname.toLowerCase();
       const isFlevy = hostname === 'flevy.com' || hostname.endsWith('.flevy.com');
+      const isStripe = hostname === 'buy.stripe.com';
 
       if (isFlevy && analyticsConfig.trackFlevyOutbound) {
         sendAnalyticsEvent('flevy_outbound_click', {
+          link_url: url.href,
+          link_text: linkText,
+          source_page: sourcePage,
+          product_id: safeText(link.dataset.productId)
+        });
+        return;
+      }
+
+      if (isStripe && analyticsConfig.trackStripeOutbound) {
+        sendAnalyticsEvent('stripe_outbound_click', {
           link_url: url.href,
           link_text: linkText,
           source_page: sourcePage,
