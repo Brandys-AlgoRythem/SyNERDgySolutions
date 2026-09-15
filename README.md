@@ -42,11 +42,12 @@ Contracting information is incorporated into the Capabilities page. The dedicate
 
 ## Digital resources
 
-The Resources page currently publishes five fixed-price digital products:
+The Resources page currently publishes six fixed-price digital products:
 
 - **#21 AI Workflow Design & Control Document** — $279
 - **#22 Automated Agent Role Specification** — $299
 - **#23 Data Flow Documentation & Control Guide** — $299
+- **#25 Software Testing & Acceptance Protocol** — $179
 - **#26 Quality Assurance Procedure for AI Outputs** — $149
 - **#30 Human-in-the-Loop AI Control & Oversight Plan** — $349
 
@@ -129,4 +130,4 @@ The site is static-host compatible. A final production host and canonical domain
 
 ## Current status
 
-Version `1.0.0-mvp` remains the historical five-page launch baseline. The public repository now includes a dedicated Resources route with five approved fixed-price digital products and Stripe-hosted purchase links, alongside current contracting identifiers, an approved capability-statement status, domain-neutral metadata, structured data, site assets, automated validation, claims controls, an explicit searchable company identity, and active funnel analytics. The remaining major publication gates are the final production host, canonical domain, GitHub repository sidebar metadata, and any intentionally public downloadable assets.
+Version `1.0.0-mvp` remains the historical five-page launch baseline. The public repository now includes a dedicated Resources route with six approved fixed-price digital products and Stripe-hosted purchase links, alongside current contracting identifiers, an approved capability-statement status, domain-neutral metadata, structured data, site assets, automated validation, claims controls, an explicit searchable company identity, and active funnel analytics. The remaining major publication gates are the final production host, canonical domain, GitHub repository sidebar metadata, and any intentionally public downloadable assets.
